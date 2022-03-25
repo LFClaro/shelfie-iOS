@@ -10,7 +10,7 @@ import SwiftUI
 struct CustomTextField: View {
     var textTitle: String?
     var value: Binding<String>
-    var roundedCornes: CGFloat?
+    var roundedCorners: CGFloat?
     var textColor: Color?
     var lineWidth: Double?
     var shadowRadius: Double?
@@ -19,8 +19,8 @@ struct CustomTextField: View {
 
     var body: some View {
         TextField(textTitle ?? "", text: value)
-         .background(Color("textFieldBk"))
-         .cornerRadius(roundedCornes ?? 0)
+         .background(Color("TxtFieldBlue"))
+         .cornerRadius(roundedCorners ?? 0)
          .foregroundColor(textColor)
          .font(.custom("Open Sans", size: fontSize ?? 20))
          .shadow(radius: shadowRadius ?? 10)
