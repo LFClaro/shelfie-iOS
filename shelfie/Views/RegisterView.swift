@@ -21,7 +21,9 @@ struct RegisterView: View {
             VStack{
                 Image("logoShelfieWhite")
                     .resizable()
-                    .frame(width: sf.w * 0.5, height: sf.h * 0.06, alignment: .center)
+                    .position(x: sf.w * 0.25, y: sf.h * 0)
+                    .frame(width: sf.w * 0.5, height: sf.h * 0.06)
+                    
                 Text("Sign Up")
                     .font(Font.custom("Montserrat", size: 32))
                     .foregroundColor(.white)
@@ -62,7 +64,9 @@ struct RegisterView: View {
                 CustomTextField(value: $confirmPassword, roundedCornes: 10, textColor: .white, shadowRadius: 5, padding: 0, fontSize: sf.h * 0.05)
                     .frame(width: sf.w * 0.8, height: sf.h * 0.065, alignment: .topTrailing)
                     .padding()
-                ButtonView(sf: sf, text: "SIGN UP", fontSize: sf.w * 0.1, hTextPadding: 20, color: <#T##Color#>, height: <#T##CGFloat?#>, action: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+                ButtonView(sf: sf, text: "SIGN UP", fontSize: sf.w * 0.08, hTextPadding: 20, color: Color("bgButton"), height: sf.h * 0.07) {
+                    
+                }
             }
         }
     }
