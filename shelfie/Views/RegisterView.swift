@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @State var firstName: String = ""
+    @State var lastName: String = ""
+    @State var email: String = ""
+    @State var password: String = ""
+    @State var confirmPassword: String = ""
     var body: some View {
         ZStack{
             Image("bg")
@@ -21,7 +26,43 @@ struct RegisterView: View {
                     .font(Font.custom("Montserrat", size: 32))
                     .foregroundColor(.white)
                     .frame(width: sf.w * 0.9, height: sf.h * 0.06, alignment: .topLeading)
-                
+                HStack{
+                    VStack{
+                        Text("First Name")
+                            .foregroundColor(.white)
+                            .frame(width: sf.w * 0.4, height: sf.h * 0.03, alignment: .topLeading)
+                        CustomTextField(value: $firstName, roundedCornes: 10, textColor: .white, shadowRadius: 5, padding: 0, fontSize: sf.h * 0.05)
+                            .frame(width: sf.w * 0.4, height: sf.h * 0.065, alignment: .topLeading)
+                            .padding()
+                    }
+                    VStack{
+                        Text("Last Name")
+                            .foregroundColor(.white)
+                            .frame(width: sf.w * 0.4, height: sf.h * 0.03, alignment: .topLeading)
+                        CustomTextField(value: $lastName, roundedCornes: 10, textColor: .white, shadowRadius: 5, padding: 0, fontSize: sf.h * 0.05)
+                            .frame(width: sf.w * 0.4, height: sf.h * 0.065, alignment: .topTrailing)
+                            .padding()
+                    }
+                }
+                Text("Email")
+                    .foregroundColor(.white)
+                    .frame(width: sf.w * 0.8, height: sf.h * 0.03, alignment: .topLeading)
+                CustomTextField(value: $email, roundedCornes: 10, textColor: .white, shadowRadius: 5, padding: 0, fontSize: sf.h * 0.05)
+                    .frame(width: sf.w * 0.8, height: sf.h * 0.065, alignment: .topTrailing)
+                    .padding()
+                Text("Password")
+                    .frame(width: sf.w * 0.8, height: sf.h * 0.03, alignment: .topLeading)
+                    .foregroundColor(.white)
+                CustomTextField(value: $password, roundedCornes: 10, textColor: .white, shadowRadius: 5, padding: 0, fontSize: sf.h * 0.05)
+                    .frame(width: sf.w * 0.8, height: sf.h * 0.065, alignment: .topTrailing)
+                    .padding()
+                Text("Confirm Password")
+                    .frame(width: sf.w * 0.8, height: sf.h * 0.03, alignment: .topLeading)
+                    .foregroundColor(.white)
+                CustomTextField(value: $confirmPassword, roundedCornes: 10, textColor: .white, shadowRadius: 5, padding: 0, fontSize: sf.h * 0.05)
+                    .frame(width: sf.w * 0.8, height: sf.h * 0.065, alignment: .topTrailing)
+                    .padding()
+                ButtonView(sf: sf, text: "SIGN UP", fontSize: sf.w * 0.1, hTextPadding: 20, color: <#T##Color#>, height: <#T##CGFloat?#>, action: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
             }
         }
     }

@@ -19,6 +19,7 @@
 		469FC05727EE52EE003E1D01 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC05627EE52EE003E1D01 /* LaunchView.swift */; };
 		469FC05B27EE5393003E1D01 /* Routing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC05A27EE5393003E1D01 /* Routing.swift */; };
 		469FC05D27EE66BE003E1D01 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC05C27EE66BE003E1D01 /* RegisterView.swift */; };
+		469FC06127EE70EF003E1D01 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06027EE70EF003E1D01 /* CustomTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		469FC05627EE52EE003E1D01 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		469FC05A27EE5393003E1D01 /* Routing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routing.swift; sourceTree = "<group>"; };
 		469FC05C27EE66BE003E1D01 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		469FC06027EE70EF003E1D01 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				2554D96127EE517000AE50C7 /* ButtonView.swift */,
+				469FC06027EE70EF003E1D01 /* CustomTextField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				469FC05B27EE5393003E1D01 /* Routing.swift in Sources */,
+				469FC06127EE70EF003E1D01 /* CustomTextField.swift in Sources */,
 				469FC05D27EE66BE003E1D01 /* RegisterView.swift in Sources */,
 				2554D95727EE49A100AE50C7 /* shelfie.xcdatamodeld in Sources */,
 				2554D96427EE518800AE50C7 /* LoginView.swift in Sources */,
