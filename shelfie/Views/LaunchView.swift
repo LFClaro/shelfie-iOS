@@ -17,12 +17,9 @@ struct LaunchView: View {
     var body: some View {
         ZStack{
             Image("bgLaunch")
-                .resizable()
-                .frame(width: sf.w * 1.07, height: sf.h * 1.07)
+                .resizable().edgesIgnoringSafeArea(.all)
             Image("launchShelfieWhite")
-                .resizable()
-                .frame(width: sf.w * 0.9, height: sf.h * 0.6)
-            
+                .resizable().scaledToFit()
             
         }.onReceive(timer , perform: { _ in
             textSizeChanged.toggle()
