@@ -19,10 +19,12 @@ struct CustomTextField: View {
     var bgColor: Color?
     var placeHolderFontSize: CGFloat?
     var padding: CGFloat?
+    var rightViewImage: String?
+    var rightViewSize: CGFloat?
     
     var body: some View {
         TextField("", text: value)
-         .modifier(PlaceHolderStyle(showPlaceHolder: $isShowPlaceHolder, placeholder: placeHolder))
+         .modifier(PlaceHolderStyle(showPlaceHolder: $isShowPlaceHolder, placeholder: placeHolder, rightViewImage: rightViewImage ?? "", rightViewSize: rightViewSize ?? 0))
          .padding(padding ?? 0)
          .background(bgColor ?? Color("TxtFieldBlue"))
          .cornerRadius(roundedCorners ?? 0)

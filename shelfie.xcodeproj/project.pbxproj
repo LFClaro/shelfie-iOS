@@ -24,6 +24,7 @@
 		469FC06527EE9033003E1D01 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06427EE9033003E1D01 /* ProfileView.swift */; };
 		469FC06827EE90BF003E1D01 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 469FC06727EE90BF003E1D01 /* Kingfisher */; };
 		469FC06A27EE97FA003E1D01 /* PlaceHolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06927EE97FA003E1D01 /* PlaceHolderStyle.swift */; };
+		469FC06C27EEA904003E1D01 /* CustomCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06B27EEA904003E1D01 /* CustomCards.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		469FC06227EE7CD0003E1D01 /* LobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyView.swift; sourceTree = "<group>"; };
 		469FC06427EE9033003E1D01 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		469FC06927EE97FA003E1D01 /* PlaceHolderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderStyle.swift; sourceTree = "<group>"; };
+		469FC06B27EEA904003E1D01 /* CustomCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCards.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				469FC06027EE70EF003E1D01 /* CustomTextField.swift */,
 				469FC06427EE9033003E1D01 /* ProfileView.swift */,
 				469FC06927EE97FA003E1D01 /* PlaceHolderStyle.swift */,
+				469FC06B27EEA904003E1D01 /* CustomCards.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				2554D95427EE49A100AE50C7 /* Persistence.swift in Sources */,
 				2554D96727EE519E00AE50C7 /* ScaleFactor.swift in Sources */,
 				2554D96227EE517000AE50C7 /* ButtonView.swift in Sources */,
+				469FC06C27EEA904003E1D01 /* CustomCards.swift in Sources */,
 				2554D95E27EE507C00AE50C7 /* WalkthroughView.swift in Sources */,
 				469FC05727EE52EE003E1D01 /* LaunchView.swift in Sources */,
 				2554D94B27EE499F00AE50C7 /* shelfieApp.swift in Sources */,
