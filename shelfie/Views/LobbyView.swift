@@ -21,6 +21,7 @@ struct LobbyView: View {
                         Image("logoShelfieWhite")
                                 .resizable()
                                 .scaledToFit()
+                                .padding()
                         ProfileView(imageUrl: "")
                     }
                     
@@ -65,7 +66,6 @@ struct LobbyView: View {
                     }.frame(width: sf.w * 1, height: sf.h * 0.25, alignment: .center)
                 }
             }
-          
         }
     }
 }
