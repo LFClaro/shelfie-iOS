@@ -21,6 +21,9 @@
 		469FC05D27EE66BE003E1D01 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC05C27EE66BE003E1D01 /* RegisterView.swift */; };
 		469FC06127EE70EF003E1D01 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06027EE70EF003E1D01 /* CustomTextField.swift */; };
 		469FC06327EE7CD0003E1D01 /* LobbyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06227EE7CD0003E1D01 /* LobbyView.swift */; };
+		469FC06527EE9033003E1D01 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06427EE9033003E1D01 /* ProfileView.swift */; };
+		469FC06827EE90BF003E1D01 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 469FC06727EE90BF003E1D01 /* Kingfisher */; };
+		469FC06A27EE97FA003E1D01 /* PlaceHolderStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469FC06927EE97FA003E1D01 /* PlaceHolderStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +42,8 @@
 		469FC05C27EE66BE003E1D01 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		469FC06027EE70EF003E1D01 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		469FC06227EE7CD0003E1D01 /* LobbyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyView.swift; sourceTree = "<group>"; };
+		469FC06427EE9033003E1D01 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		469FC06927EE97FA003E1D01 /* PlaceHolderStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceHolderStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				469FC06827EE90BF003E1D01 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +115,8 @@
 			children = (
 				2554D96127EE517000AE50C7 /* ButtonView.swift */,
 				469FC06027EE70EF003E1D01 /* CustomTextField.swift */,
+				469FC06427EE9033003E1D01 /* ProfileView.swift */,
+				469FC06927EE97FA003E1D01 /* PlaceHolderStyle.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -145,6 +153,9 @@
 			dependencies = (
 			);
 			name = shelfie;
+			packageProductDependencies = (
+				469FC06727EE90BF003E1D01 /* Kingfisher */,
+			);
 			productName = shelfie;
 			productReference = 2554D94727EE499F00AE50C7 /* Shelfie.app */;
 			productType = "com.apple.product-type.application";
@@ -173,6 +184,9 @@
 				Base,
 			);
 			mainGroup = 2554D93E27EE499F00AE50C7;
+			packageReferences = (
+				469FC06627EE90BF003E1D01 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 2554D94827EE499F00AE50C7 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,6 +214,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				469FC05B27EE5393003E1D01 /* Routing.swift in Sources */,
+				469FC06A27EE97FA003E1D01 /* PlaceHolderStyle.swift in Sources */,
+				469FC06527EE9033003E1D01 /* ProfileView.swift in Sources */,
 				469FC06127EE70EF003E1D01 /* CustomTextField.swift in Sources */,
 				469FC05D27EE66BE003E1D01 /* RegisterView.swift in Sources */,
 				2554D95727EE49A100AE50C7 /* shelfie.xcdatamodeld in Sources */,
@@ -411,6 +427,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		469FC06627EE90BF003E1D01 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		469FC06727EE90BF003E1D01 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 469FC06627EE90BF003E1D01 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2554D95527EE49A100AE50C7 /* shelfie.xcdatamodeld */ = {
