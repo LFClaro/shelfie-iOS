@@ -26,6 +26,7 @@ struct shelfieApp: App {
                        }.zIndex(2.0)
                    }
                }
+               .preferredColorScheme(.dark)
            }
        }
 }

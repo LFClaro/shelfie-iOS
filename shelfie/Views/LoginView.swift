@@ -72,7 +72,11 @@ struct LoginView: View {
                         }
                 }.padding().frame(width: sf.w * 0.75)
                 
-                ButtonView(text: "LOGIN").padding()
+                NavigationLink {
+                    MainView()
+                } label: {
+                    ButtonView(text: "LOGIN").padding()
+                }
                 
                 Spacer()
                 
