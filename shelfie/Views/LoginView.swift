@@ -75,8 +75,9 @@ struct LoginView: View {
                 NavigationLink {
                     MainView()
                 } label: {
-                    ButtonView(text: "LOGIN").padding()
+                    Image("getStartedButton")
                 }
+                ButtonView(text: "LOGIN").padding()
                 
                 Spacer()
                 

@@ -1,13 +1,13 @@
 //
-//  LobbyView.swift
+//  HomeView.swift
 //  shelfie
 //
-//  Created by Ramy Anber on 2022-03-25.
+//  Created by Luiz Fernando Reis on 2022-04-07.
 //
 
 import SwiftUI
 
-struct LobbyView: View {
+struct HomeView: View {
     @State var searchText = ""
     
     var body: some View {
@@ -70,8 +70,8 @@ struct LobbyView: View {
     }
 }
 
-struct LobbyView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        LobbyView()
+        HomeView()
     }
 }

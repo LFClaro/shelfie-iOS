@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>828524635521-7pja6pjdsbgmhpft7iof60l0bf479h82.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.828524635521-7pja6pjdsbgmhpft7iof60l0bf479h82</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD0dmBJWToToZiWJuo7Unp-M_I_Im-Cqpg</string>
+	<key>GCM_SENDER_ID</key>
+	<string>828524635521</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.shelfie.app</string>
+	<key>PROJECT_ID</key>
+	<string>shelfie-181dc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>shelfie-181dc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:828524635521:ios:b8f68639b2a6e6a735f480</string>
+</dict>
+</plist>

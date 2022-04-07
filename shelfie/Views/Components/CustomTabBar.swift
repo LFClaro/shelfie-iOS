@@ -12,7 +12,7 @@ struct CustomTabBar: View {
     @StateObject var viewRouter: ViewRouter
     
     @State var showPopUp = false
-    @State var home = LobbyView()
+    @State var home = HomeView()
     @State var collection = Text("Collection")
     @State var watchlist = Text("Watchlist")
     @State var settings = Text("Settings")
