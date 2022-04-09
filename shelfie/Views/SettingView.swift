@@ -14,7 +14,6 @@ struct SettingView: View {
     enum Prices: String, CaseIterable, Identifiable {
         case CAD
         case USD
-
         var id: String { self.rawValue }
     }
     var body: some View {

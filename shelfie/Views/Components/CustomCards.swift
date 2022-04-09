@@ -28,58 +28,59 @@ struct CustomCards: View {
                         VStack{
                             ZStack{
                                 Image(image ?? "gameImageTest")
-                                    .frame(width: 265, height: 150)
+                                    .resizable()
+                                    .frame(width: sf.w * 0.8, height: sf.h * 0.17)
                                 Text(rankNumber ?? "#1")
                                     .bold()
-                                    .frame(width: 50, height: 20, alignment: .center)
+                                    .frame(width: sf.w * 0.1, height: sf.h * 0.02, alignment: .center)
                                     .padding(3)
                                     .foregroundColor(.white)
                                     .background(Color("green"))
                                     .cornerRadius(20)
-                                    .position(x: 32, y: 120)
+                                    .position(x: sf.w * 0.15, y: sf.h * 0.15)
                                 HStack{
                                     Image(systemName: "heart.fill")
                                         .foregroundColor(.white)
                                     Text(heartNumber ?? "3254")
                                         .bold()
                                         .foregroundColor(Color.white)
-                                        .font(.system(size: 12))
-                                        .frame(width: 40, height: 20, alignment: .center)
+                                        .font(.system(size: sf.w * 0.03))
+                                        .frame(width: sf.w * 0.1, height: sf.h * 0.02, alignment: .center)
                                 }
                                 .padding(3)
                                 .background(Color("red"))
                                 .cornerRadius(20)
-                                .position(x: 40, y: 40)
+                                .position(x: sf.w * 0.15, y: sf.h * 0.03)
                                 HStack{
                                     Image("eyes")
                                         .foregroundColor(.white)
                                     Text(viewsNumber ?? "3254")
                                         .bold()
                                         .foregroundColor(Color.white)
-                                        .font(.system(size: 12))
-                                        .frame(width: 40, height: 20, alignment: .center)
+                                        .font(.system(size: sf.w * 0.03))
+                                        .frame(width: sf.w * 0.1, height: sf.h * 0.02, alignment: .center)
                                 }
                                 .padding(3)
                                 .background(Color("babyBlue"))
                                 .cornerRadius(20)
-                                .position(x: 220, y: 40)
+                                .position(x: sf.w * 0.65, y: sf.h * 0.03)
                                   
-                            }
+                            }.frame(width: sf.w * 0.78, height: sf.h * 0.18, alignment: .center)
                             HStack{
                                 Text(cardName ?? "Root")
                                     .bold()
                                     .foregroundColor(Color.white)
                                 Image("$")
                                     .frame(maxWidth: .infinity, alignment: .topTrailing)
-                            }.frame(width: 250, height: 20, alignment: .topLeading)
+                            }.frame(width: sf.w * 0.7, height: sf.h * 0.03, alignment: .center)
                             Text(description ?? "dsadasasd")
-                                .font(.system(size: 13))
+                                .font(.system(size: sf.w * 0.035))
                                 .foregroundColor(Color.white)
-                                .frame(width: 250, height: 20, alignment: .topLeading)
+                                .frame(width: sf.w * 0.7, height: sf.h * 0.03, alignment: .topLeading)
                         }
                     }.cornerRadius(10)
                 })
-                .frame(width: width ?? 0, height: height ?? 0)
+                .frame(width: sf.w * 0.8, height: sf.h * 0.26)
         }
     }
 }

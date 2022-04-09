@@ -55,10 +55,10 @@ struct HomeView: View {
             }.padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(spacing: sf.w * 0.2){
-                    Spacer()
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.22, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.22, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                    Spacer()
+                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.4, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+                        .padding(50)
+                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.4, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+                        .padding()
                 }
             }
             .frame(maxWidth: .infinity, alignment: .center)
