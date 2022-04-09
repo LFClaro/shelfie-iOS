@@ -31,14 +31,19 @@ struct HomeView: View {
                         Color("DarkPurple")
                         HStack{
                             Image("cards")
+                                .resizable()
                             Spacer()
                             Image("Dice")
+                                .resizable()
                             Spacer()
                             Image("puzzle")
+                                .resizable()
                             Spacer()
                             Image("partyGames")
+                                .resizable()
                             Spacer()
                             Image("all")
+                                .resizable()
                         }
                         .frame(width: sf.w * 0.86, height: sf.h * 0.1, alignment: .center)
                     }
@@ -54,11 +59,10 @@ struct HomeView: View {
                 }
             }.padding(.horizontal)
             ScrollView(.horizontal, showsIndicators: false){
-                HStack(spacing: sf.w * 0.2){
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.4, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        .padding(50)
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.4, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        .padding()
+                HStack(spacing: sf.w * 0.1){
+                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+                  
                 }
             }
             .frame(maxWidth: .infinity, alignment: .center)

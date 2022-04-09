@@ -16,16 +16,11 @@ struct WatchlistView: View {
             Spacer()
             Spacer()
             if (tabs[selectedTab] == "Full View"){
-                VStack(spacing: sf.w * 0.05){
+                VStack(spacing: sf.h * 0.02){
                     CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        .padding()
                     CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        .padding()
                     CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        .padding()
                     CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        .padding()
-                     
                 }
             } else {
                 VStack{

@@ -13,8 +13,6 @@ struct CustomCards: View {
     var endColor: Color?
     var cardName: String?
     var image: String?
-    var width: CGFloat?
-    var height: CGFloat?
     var description: String?
     var rankNumber: String?
     var heartNumber: String?
@@ -87,6 +85,6 @@ struct CustomCards: View {
 
 struct CustomCards_Previews: PreviewProvider {
     static var previews: some View {
-        CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.22, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+        CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
     }
 }
