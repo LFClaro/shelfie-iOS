@@ -17,24 +17,32 @@ struct SettingView: View {
         var id: String { self.rawValue }
     }
     var body: some View {
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+        let version = appVersion as? String ?? ""
+        let appBuild = Bundle.main.infoDictionary!["CFBundleVersion"]
+        let build = appBuild as? String ?? ""
+        
         VStack{
             Text("Settings")
-                .font(Font.custom("Montserrat", size: sf.w * 0.1))
+                .font(.custom("Avenir-Black", size: sf.h * 0.04))
                 .frame(maxWidth: .infinity, alignment: .leading)
             
                 Section{
                     Toggle(isOn: $isNotify) {
                             Text("Allow Notifications")
+                            .font(.custom("Avenir", size: sf.h * 0.02))
                         }
                 }.padding()
                 Section{
                     Toggle(isOn: $isPublic) {
                             Text("Make my Profile Public")
+                            .font(.custom("Avenir", size: sf.h * 0.02))
                         }
                 }.padding()
                 Section{
                     HStack{
                         Text("Show Prices in:         ")
+                            .font(.custom("Avenir", size: sf.h * 0.02))
                         Picker("", selection: $prices) {
                                          ForEach(Prices.allCases) { price in
                                              Text(price.rawValue).tag(price)
@@ -44,23 +52,23 @@ struct SettingView: View {
                     }
                 }.padding()
             Text("Terms of Use")
-                .font(Font.custom("Montserrat", size: sf.w * 0.08))
-                .frame(width: sf.w * 1, height: sf.h * 0.08, alignment: .center)
+                .font(Font.custom("Avenir", size: sf.w * 0.08))
+                .frame(maxWidth: sf.w, minHeight: sf.h * 0.08, alignment: .center)
                 .foregroundColor(Color("LinkBlue"))
             Text("Privacy Policy")
-                .font(Font.custom("Montserrat", size: sf.w * 0.08))
-                .frame(width: sf.w * 1, height: sf.h * 0.08, alignment: .center)
+                .font(Font.custom("Avenir", size: sf.w * 0.08))
+                .frame(maxWidth: sf.w, minHeight: sf.h * 0.08, alignment: .center)
                 .foregroundColor(Color("LinkBlue"))
             Text("Contact Us")
-                .font(Font.custom("Montserrat", size: sf.w * 0.08))
-                .frame(width: sf.w * 1, height: sf.h * 0.08, alignment: .center)
+                .font(Font.custom("Avenir", size: sf.w * 0.08))
+                .frame(maxWidth: sf.w, minHeight: sf.h * 0.08, alignment: .center)
                 .foregroundColor(Color("LinkBlue"))
 
-            Text("Version 1.0  •  Build 1")
-                .font(Font.custom("Montserrat", size: sf.w * 0.05))
+            Text(("Version \(version)  |  Build \(build)"))
+                .font(Font.custom("Avenir", size: sf.w * 0.05))
                 .foregroundColor(Color("versionText"))
             Text("Copyright © 2022 Roll 42 Inc.")
-                .font(Font.custom("Montserrat", size: sf.w * 0.05))
+                .font(Font.custom("Avenir", size: sf.w * 0.05))
                 .foregroundColor(Color("versionText"))
         }
     }
