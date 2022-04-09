@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomCards: View {
-    var roundedCornes: CGFloat?
+    var roundedCorners: CGFloat?
     var startColor: Color?
     var endColor: Color?
     var cardName: String?
@@ -21,7 +21,7 @@ struct CustomCards: View {
     var viewsNumber: String?
     var body: some View {
         ZStack{
-            RoundedRectangle(cornerRadius: roundedCornes ?? 20)
+            RoundedRectangle(cornerRadius: roundedCorners ?? 20)
                 .overlay(content: {
                     ZStack{
                         Color("DarkPurple")
@@ -32,10 +32,11 @@ struct CustomCards: View {
                                 Text(rankNumber ?? "#1")
                                     .bold()
                                     .frame(width: 50, height: 20, alignment: .center)
+                                    .padding(3)
                                     .foregroundColor(.white)
                                     .background(Color("green"))
                                     .cornerRadius(20)
-                                    .position(x: 40, y: 120)
+                                    .position(x: 32, y: 120)
                                 HStack{
                                     Image(systemName: "heart.fill")
                                         .foregroundColor(.white)
@@ -44,9 +45,11 @@ struct CustomCards: View {
                                         .foregroundColor(Color.white)
                                         .font(.system(size: 12))
                                         .frame(width: 40, height: 20, alignment: .center)
-                                } .background(Color("red"))
-                                    .cornerRadius(20)
-                                    .position(x: 40, y: 40)
+                                }
+                                .padding(3)
+                                .background(Color("red"))
+                                .cornerRadius(20)
+                                .position(x: 40, y: 40)
                                 HStack{
                                     Image("eyes")
                                         .foregroundColor(.white)
@@ -55,9 +58,11 @@ struct CustomCards: View {
                                         .foregroundColor(Color.white)
                                         .font(.system(size: 12))
                                         .frame(width: 40, height: 20, alignment: .center)
-                                } .background(Color("babyBlue"))
-                                    .cornerRadius(20)
-                                    .position(x: 220, y: 40)
+                                }
+                                .padding(3)
+                                .background(Color("babyBlue"))
+                                .cornerRadius(20)
+                                .position(x: 220, y: 40)
                                   
                             }
                             HStack{
@@ -81,6 +86,6 @@ struct CustomCards: View {
 
 struct CustomCards_Previews: PreviewProvider {
     static var previews: some View {
-        CustomCards()
+        CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.22, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
     }
 }
