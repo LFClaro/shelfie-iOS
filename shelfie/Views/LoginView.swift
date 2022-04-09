@@ -28,6 +28,7 @@ struct LoginView: View {
                 Image("logoShelfieWhite").resizable().scaledToFit()
                 Text("Build your collection in a snap!")
                     .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 VStack(alignment: .leading, spacing: sf.h * 0.005){
                     Text("Email").font(.custom("Avenir", size: sf.h * 0.03))
@@ -94,7 +95,9 @@ struct LoginView: View {
                 
                 Spacer()
                 
-            }.padding()
+            }
+            .padding()
+            .frame(maxWidth: sf.w)
         }
         .foregroundColor(.white)
         .navigationBarHidden(true)

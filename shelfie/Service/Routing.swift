@@ -24,6 +24,9 @@ class Routing: ObservableObject {
     func routeProfile() {
         nextView = "ProfileView"
     }
+    func routeSetting() {
+        nextView = "SettingView"
+    }
 }
 
 
