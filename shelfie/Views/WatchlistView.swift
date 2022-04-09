@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct WatchlistView: View {
+    @State var cardImage = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
+    @State var rowImage = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324722072.jpg"
     @State var selectedTab = 0
     let tabs = ["Full View", "List View"]
     
@@ -16,19 +18,21 @@ struct WatchlistView: View {
             Spacer()
             Spacer()
             if (tabs[selectedTab] == "Full View"){
-                VStack(spacing: sf.h * 0.02){
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                    CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+                VStack(spacing: sf.w * 0.05){
+                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
                 }
             } else {
-                VStack{
-                    Text("LIST VIEW HERE SOON")
+                VStack (spacing: 20){
+                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
+                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
+                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
+                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
                 }
             }
         }
-        .foregroundColor(.white)
     }
 }
 

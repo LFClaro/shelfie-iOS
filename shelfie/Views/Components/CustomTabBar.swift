@@ -41,27 +41,32 @@ struct CustomTabBar: View {
                     }
                     .frame(maxHeight: geometry.size.height * 0.08)
                     .padding(.vertical)
-                    if viewRouter.currentPage == .watchlist {
-                        Text("Your Watchlist")
-                                .font(.custom("Avenir-Black", size: sf.h * 0.04))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
-                            Text(title)
-                                .frame(maxWidth: sf.w * 0.5)
+                    Group{
+                        if viewRouter.currentPage == .collection {
+                            Text("Your Virtual Shelf")
+                                    .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
+                                Text(title)
+                                    .frame(maxWidth: sf.w * 0.5)
+                            }
+                            .scaleEffect(0.6)
+                        }
+                        if viewRouter.currentPage == .watchlist {
+                            Text("Your Watchlist")
+                                    .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
+                                Text(title)
+                                    .frame(maxWidth: sf.w * 0.5)
+                            }
+                            .scaleEffect(0.6)
                         }
                     }
-                    if viewRouter.currentPage == .collection {
-                        Text("Your Virtual Shelf")
-                                .font(.custom("Avenir-Black", size: sf.h * 0.04))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
-                            Text(title)
-                                .frame(maxWidth: sf.w * 0.5)
-                        }
-                    }
-                    
+                    .padding(.horizontal)
+                    .padding(.bottom)
                     ScrollView(.vertical, showsIndicators: false){
                         switch viewRouter.currentPage {
                             case .home:
@@ -73,7 +78,7 @@ struct CustomTabBar: View {
                             case .settings:
                                 settings
                         }
-                    }
+                    }.padding(.horizontal)
                     ZStack {
                         if showPopUp {
                             PlusMenu(widthAndHeight: geometry.size.width/7)
@@ -88,7 +93,6 @@ struct CustomTabBar: View {
                                     .frame(width: geometry.size.width/6.5, height: geometry.size.width/6.5)
                                     .shadow(radius: 4)
                                 Circle()
-                                    .foregroundColor(.white)
                                     .frame(width: geometry.size.width/8, height: geometry.size.width/8)
                                     .shadow(radius: 4)
                                 LinearGradient(colors: [Color("BtnPurple"), Color("bgSearchTxtField")], startPoint: .top, endPoint: .bottom)
@@ -142,7 +146,6 @@ struct PlusMenu: View {
                     .aspectRatio(contentMode: .fit)
                     .padding(15)
                     .frame(width: widthAndHeight, height: widthAndHeight)
-                    .foregroundColor(.white)
             }
             ZStack {
                 Circle()
@@ -153,7 +156,6 @@ struct PlusMenu: View {
                     .aspectRatio(contentMode: .fit)
                     .padding(15)
                     .frame(width: widthAndHeight, height: widthAndHeight)
-                    .foregroundColor(.white)
             }
         }
         .transition(.scale)

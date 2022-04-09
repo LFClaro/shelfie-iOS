@@ -11,6 +11,7 @@ struct MainView: View {
     var body: some View {
         ZStack{
             CustomTabBar(viewRouter: ViewRouter())
+                .foregroundColor(.white)
         }
     }
 }

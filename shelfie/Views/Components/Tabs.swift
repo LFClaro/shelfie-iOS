@@ -41,6 +41,8 @@ struct Tabs<Label: View>: View {
             }
         }) {
             label(title, isSelected)
+                .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                .opacity(isSelected ? 1 : 0.5)
                 .padding(.vertical)
                 .background(isSelected ? backgroundSelectedColor : backgroundUnselectedColor)
                 .foregroundColor(isSelected ? foregroundSelectedColor : foregroundUnselectedColor)
@@ -58,7 +60,6 @@ struct Tabs_Previews: PreviewProvider {
         Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
             Text(title)
                 .frame(maxWidth: sf.w * 0.5)
-                .font(.custom("Avenir-Black", size: sf.h * 0.025))
         }
     }
 }

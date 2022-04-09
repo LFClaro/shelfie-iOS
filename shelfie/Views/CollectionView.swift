@@ -17,24 +17,22 @@ struct CollectionView: View {
         VStack{
             Spacer()
             Spacer()
-       
                 if (tabs[selectedTab] == "Full View"){
                     VStack(spacing: sf.w * 0.05){
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.9,heartNumber: "3201", viewsNumber: "3201", showForSale: false)
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.9,heartNumber: "3201", viewsNumber: "3201", showForSale: false)
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.9,heartNumber: "3201", viewsNumber: "3201", showForSale: false)
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.9,heartNumber: "3201", viewsNumber: "3201", showForSale: false)
+                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, heartNumber: "3201", viewsNumber: "3201", showForSale: false)
+                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, heartNumber: "3201", viewsNumber: "3201", showForSale: false)
+                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, heartNumber: "3201", viewsNumber: "3201", showForSale: false)
+                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, heartNumber: "3201", viewsNumber: "3201", showForSale: false)
                     }
                 } else {
                     VStack (spacing: 20){
-                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, scale: 1, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
-                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, scale: 1, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
-                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, scale: 1, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
-                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, scale: 1, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
+                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
+                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
+                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
+                        CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
                     }
             }
         }
-        .foregroundColor(.white)
     }
 }
 

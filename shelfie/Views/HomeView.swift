@@ -14,11 +14,11 @@ struct HomeView: View {
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false){
-            VStack(spacing:0) {
+            VStack{
                 Spacer()
                 Spacer()
                 
-                VStack {
+                Group{
                     Text("Build your collection in a snap!")
                         .font(.custom("Avenir-Black", size: sf.h * 0.04))
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -32,43 +32,44 @@ struct HomeView: View {
                             Color("DarkPurple")
                             HStack{
                                 Image("cards")
-                                    .resizable()
+                                    .resizable().scaledToFit()
                                 Spacer()
                                 Image("Dice")
-                                    .resizable()
+                                    .resizable().scaledToFit()
                                 Spacer()
                                 Image("puzzle")
-                                    .resizable()
+                                    .resizable().scaledToFit()
                                 Spacer()
-                                Image("partyGames")
-                                    .resizable()
+                                Image("party")
+                                    .resizable().scaledToFit()
                                 Spacer()
                                 Image("all")
-                                    .resizable()
+                                    .resizable().scaledToFit()
+                            }
+                            .frame(width: sf.w * 0.86, height: sf.h * 0.1, alignment: .center)
+                        }
                     }
                     .cornerRadius(20)
                     .frame(maxWidth: .infinity, idealHeight: sf.h * 0.13, alignment: .center)
                     HStack{
                         Text("Popular Games")
                             .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                            .fixedSize(horizontal: true, vertical: false)
                         Spacer()
                         Text("See Top 100")
                             .font(.custom("Avenir-Black", size: sf.h * 0.02))
                     }
                 }.padding(.horizontal)
                 ScrollView(.horizontal, showsIndicators: false){
-                    HStack(spacing: 0){
+                    HStack(spacing: sf.w * 0.05){
                         Spacer()
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.8, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.8, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.8, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
-                        CustomCards(roundedCorners: 20, cardName: "Root", imageUrl: cardImage, scale: 0.8, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+                        CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                        CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
                         Spacer()
                     }
                 }
-            .frame(maxWidth: .infinity, alignment: .center)
-        }
-        .foregroundColor(.white)
+                .frame(maxWidth: .infinity, minHeight: sf.h * 0.28, alignment: .center)
+            }
         }
     }
 }

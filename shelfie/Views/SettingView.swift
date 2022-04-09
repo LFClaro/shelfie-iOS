@@ -21,18 +21,15 @@ struct SettingView: View {
             Text("Settings")
                 .font(Font.custom("Montserrat", size: sf.w * 0.1))
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(.white)
             
                 Section{
                     Toggle(isOn: $isNotify) {
                             Text("Allow Notifications")
-                            .foregroundColor(.white)
                         }
                 }.padding()
                 Section{
                     Toggle(isOn: $isPublic) {
                             Text("Make my Profile Public")
-                            .foregroundColor(.white)
                         }
                 }.padding()
                 Section{
