@@ -19,17 +19,17 @@ struct WatchlistView: View {
             Spacer()
             if (tabs[selectedTab] == "Full View"){
                 VStack(spacing: sf.w * 0.05){
-                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
-                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
-                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
-                    CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                    CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                    CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                    CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                    CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
                 }
             } else {
                 VStack (spacing: 20){
-                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
-                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
-                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
-                    CustomRows(roundedCorners: 60, cardName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
+                    CustomRows(roundedCorners: 60, gameName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
+                    CustomRows(roundedCorners: 60, gameName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
+                    CustomRows(roundedCorners: 60, gameName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
+                    CustomRows(roundedCorners: 60, gameName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: true, showEyes: false, showForSale: true)
                 }
             }
         }

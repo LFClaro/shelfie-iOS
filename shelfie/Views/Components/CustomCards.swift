@@ -11,10 +11,8 @@ struct CustomCards: View {
     var roundedCorners: CGFloat?
     var startColor: Color?
     var endColor: Color?
-    var cardName: String?
+    var gameName: String?
     var imageUrl: String?
-    var width: CGFloat?
-    var height: CGFloat?
     var infoYear: String?
     var infoPlayers: String?
     var infoTime: String?
@@ -93,7 +91,7 @@ struct CustomCards: View {
                                 }
                                 HStack{
                                     VStack (spacing:0){
-                                        Text(cardName ?? "Root")
+                                        Text(gameName ?? "Root")
                                             .font(.custom("Avenir-Black", size: geoH / 10))
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                         Text("\(infoYear ?? "2018") • \(Image(systemName: "person.2.fill")) \(infoPlayers ?? "2-4") • \(Image(systemName: "clock.fill")) \(infoTime ?? "60-90")")
@@ -101,20 +99,21 @@ struct CustomCards: View {
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                     .padding(.vertical)
-                                    Spacer()
-                                    if (showForSale){
-                                        LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .topLeading, endPoint: .bottomTrailing)
-                                            .mask {
-                                                Text("$")
-                                                    .font(.custom("Avenir-Black", size: geoW / 8))
-                                            }.frame(width: geoW / 8)
-                                    }
                                 }.padding(.horizontal)
                             }
+                            if (showForSale){
+                                Group {
+                                    LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        .mask {
+                                            Text("$")
+                                                .font(.custom("Avenir-Black", size: geoW / 8))
+                                        }.frame(width: geoW / 5, height: geoH / 3)
+                                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+                            }// End of GeometryReader
                         }.cornerRadius(20)
-                    }// End of GeometryReader
+                    }
                 })
-                .frame(maxWidth: width ?? .infinity)
+                .frame(maxWidth: .infinity)
                 .aspectRatio(1.25, contentMode: .fit)
                 .foregroundColor(Color.white)
         }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -125,6 +124,6 @@ struct CustomCards_Previews: PreviewProvider {
     static var image = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
     
     static var previews: some View {
-        CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: image, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+        CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: image, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
     }
 }

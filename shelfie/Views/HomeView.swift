@@ -31,20 +31,18 @@ struct HomeView: View {
                         ZStack{
                             Color("DarkPurple")
                             HStack{
+                                Spacer()
                                 Image("cards")
                                     .resizable().scaledToFit()
-                                Spacer()
                                 Image("Dice")
                                     .resizable().scaledToFit()
-                                Spacer()
                                 Image("puzzle")
                                     .resizable().scaledToFit()
-                                Spacer()
                                 Image("party")
                                     .resizable().scaledToFit()
-                                Spacer()
                                 Image("all")
                                     .resizable().scaledToFit()
+                                Spacer()
                             }
                             .frame(width: sf.w * 0.86, height: sf.h * 0.1, alignment: .center)
                         }
@@ -53,18 +51,19 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, idealHeight: sf.h * 0.13, alignment: .center)
                     HStack{
                         Text("Popular Games")
-                            .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                            .font(.custom("Avenir-Black", size: sf.h * 0.035))
                             .fixedSize(horizontal: true, vertical: false)
                         Spacer()
                         Text("See Top 100")
                             .font(.custom("Avenir-Black", size: sf.h * 0.02))
+                            .fixedSize(horizontal: true, vertical: false)
                     }
                 }.padding(.horizontal)
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: sf.w * 0.05){
                         Spacer()
-                        CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
-                        CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                        CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                        CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
                         Spacer()
                     }
                 }
