@@ -10,12 +10,13 @@ import SwiftUI
 struct CustomTabBar: View {
     
     @StateObject var viewRouter: ViewRouter
-    
+    @State var selectedTab = 0
+    let tabs = ["Full View", "List View"]
     @State var showPopUp = false
     @State var home = HomeView()
     @State var collection = CollectionView()
-    @State var watchlist = Text("Watchlist")
-    @State var settings = Text("Settings")
+    @State var watchlist = WatchlistView()
+    @State var settings = SettingView()
     
     var body: some View {
         GeometryReader { geometry in
@@ -40,6 +41,27 @@ struct CustomTabBar: View {
                     }
                     .frame(maxHeight: geometry.size.height * 0.08)
                     .padding(.vertical)
+                    if viewRouter.currentPage == .watchlist {
+                        Text("Your Watchlist")
+                                .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
+                            Text(title)
+                                .frame(maxWidth: sf.w * 0.5)
+                        }
+                    }
+                    if viewRouter.currentPage == .collection {
+                        Text("Your Virtual Shelf")
+                                .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
+                            Text(title)
+                                .frame(maxWidth: sf.w * 0.5)
+                        }
+                    }
+                    
                     ScrollView(.vertical, showsIndicators: false){
                         switch viewRouter.currentPage {
                             case .home:

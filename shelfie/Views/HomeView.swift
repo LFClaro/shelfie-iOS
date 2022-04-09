@@ -32,17 +32,19 @@ struct HomeView: View {
                             Color("DarkPurple")
                             HStack{
                                 Image("cards")
+                                    .resizable()
                                 Spacer()
                                 Image("Dice")
+                                    .resizable()
                                 Spacer()
                                 Image("puzzle")
+                                    .resizable()
                                 Spacer()
                                 Image("partyGames")
+                                    .resizable()
                                 Spacer()
                                 Image("all")
-                            }
-                            .frame(width: sf.w * 0.86, height: sf.h * 0.1, alignment: .center)
-                        }
+                                    .resizable()
                     }
                     .cornerRadius(20)
                     .frame(maxWidth: .infinity, idealHeight: sf.h * 0.13, alignment: .center)
@@ -64,9 +66,9 @@ struct HomeView: View {
                         Spacer()
                     }
                 }
-                .frame(maxWidth: .infinity, minHeight: sf.h * 0.35, alignment: .center)
-            }
-            //        .foregroundColor(.white)
+            .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .foregroundColor(.white)
         }
     }
 }
