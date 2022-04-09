@@ -18,7 +18,7 @@ struct Tabs<Label: View>: View {
     let foregroundUnselectedColor: Color = Color(.white)
     
     //Shape for clipping
-    let shape = RoundedRectangle(cornerRadius: 10)
+    let shape = RoundedRectangle(cornerRadius: 30)
     
     // Tab label rendering closure - provides the current title and if it's the currently selected tab
     let label: (String, Bool) -> Label
@@ -29,13 +29,14 @@ struct Tabs<Label: View>: View {
                 self.tab(title: $0)
             }
         }
+        .clipShape(shape)
     }
     
     public func tab(title: String) -> some View {
         let index = self.tabs.firstIndex(of: title)!
         let isSelected = index == selection
         return Button(action: {
-            withAnimation {
+            withAnimation(.spring()) {
                 self.selection = index
             }
         }) {
@@ -43,21 +44,21 @@ struct Tabs<Label: View>: View {
                 .padding(.vertical)
                 .background(isSelected ? backgroundSelectedColor : backgroundUnselectedColor)
                 .foregroundColor(isSelected ? foregroundSelectedColor : foregroundUnselectedColor)
-                .clipShape(shape)
-                .transition(.slide)
+                .transition(.move(edge: .leading))
         }
     }
 }
 
 
 struct Tabs_Previews: PreviewProvider {
-    @State static var tabs = ["Full", "List"]
+    @State static var tabs = ["Full View", "List View"]
     @State static var selectedTab = 0
     
     static var previews: some View {
         Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
             Text(title)
-                .frame(width: sf.w * 0.5)
+                .frame(maxWidth: sf.w * 0.5)
+                .font(.custom("Avenir-Black", size: sf.h * 0.025))
         }
     }
 }

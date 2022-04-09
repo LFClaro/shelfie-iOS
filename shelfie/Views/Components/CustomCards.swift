@@ -12,80 +12,117 @@ struct CustomCards: View {
     var startColor: Color?
     var endColor: Color?
     var cardName: String?
-    var image: String?
+    var imageUrl: String?
     var width: CGFloat?
     var height: CGFloat?
-    var description: String?
+    var scale: CGFloat?
+    var infoYear: String?
+    var infoPlayers: String?
+    var infoTime: String?
     var rankNumber: String?
     var heartNumber: String?
     var viewsNumber: String?
+    var showForSale = true
+    
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: roundedCorners ?? 20)
                 .overlay(content: {
                     ZStack{
                         Color("DarkPurple")
-                        VStack{
+                        VStack (spacing:0) {
                             ZStack{
-                                Image(image ?? "gameImageTest")
-                                    .frame(width: 265, height: 150)
-                                Text(rankNumber ?? "#1")
-                                    .bold()
-                                    .frame(width: 50, height: 20, alignment: .center)
-                                    .padding(3)
-                                    .foregroundColor(.white)
-                                    .background(Color("green"))
-                                    .cornerRadius(20)
-                                    .position(x: 32, y: 120)
-                                HStack{
-                                    Image(systemName: "heart.fill")
-                                        .foregroundColor(.white)
-                                    Text(heartNumber ?? "3254")
-                                        .bold()
-                                        .foregroundColor(Color.white)
-                                        .font(.system(size: 12))
-                                        .frame(width: 40, height: 20, alignment: .center)
+                                Group {
+                                    if imageUrl != nil {
+                                        AsyncImage(url: URL(string: imageUrl ?? "")) { image in
+                                            image.resizable().scaledToFill()
+                                        } placeholder: {
+                                            ProgressView()
+                                                .scaleEffect(6)
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                        }
+                                    } else {
+                                        Image("bgPattern")
+                                            .resizable()
+                                            .scaledToFill()
+                                    }
                                 }
-                                .padding(3)
-                                .background(Color("red"))
-                                .cornerRadius(20)
-                                .position(x: 40, y: 40)
-                                HStack{
-                                    Image("eyes")
-                                        .foregroundColor(.white)
-                                    Text(viewsNumber ?? "3254")
-                                        .bold()
-                                        .foregroundColor(Color.white)
-                                        .font(.system(size: 12))
-                                        .frame(width: 40, height: 20, alignment: .center)
+                                .frame(height: sf.h * 0.25)
+                                .clipped()
+                                if (rankNumber != nil) {
+                                    Text(rankNumber ?? "#1")
+                                        .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                        .frame(width: sf.w * 0.2, height: sf.h * 0.04, alignment: .center)
+                                        .padding(3)
+                                        .background(Color("green"))
+                                        .cornerRadius(20)
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                                        .padding()
                                 }
-                                .padding(3)
-                                .background(Color("babyBlue"))
-                                .cornerRadius(20)
-                                .position(x: 220, y: 40)
-                                  
+                                HStack{
+                                    if (heartNumber != nil) {
+                                        HStack{
+                                            Image(systemName: "heart.fill")
+                                                .font(.custom("Avenir-Black", size: sf.h * 0.028))
+                                            Text(heartNumber ?? "3254")
+                                                .font(.custom("Avenir-Black", size: sf.h * 0.025))
+                                        }
+                                        .frame(width: sf.w * 0.26, height: sf.h * 0.04, alignment: .center)
+                                        .padding(3)
+                                        .background(Color("red"))
+                                        .cornerRadius(20)
+                                    }
+                                    Spacer()
+                                    if (viewsNumber != nil) {
+                                        HStack{
+                                            Image(systemName: "eyes.inverse")
+                                                .font(.custom("Avenir-Black", size: sf.h * 0.028))
+                                            Text(viewsNumber ?? "3254")
+                                                .font(.custom("Avenir-Black", size: sf.h * 0.025))
+                                        }
+                                        .frame(width: sf.w * 0.26, height: sf.h * 0.04, alignment: .center)
+                                        .padding(3)
+                                        .background(Color("babyBlue"))
+                                        .cornerRadius(20)
+                                    }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                .padding()
                             }
                             HStack{
-                                Text(cardName ?? "Root")
-                                    .bold()
-                                    .foregroundColor(Color.white)
-                                Image("$")
-                                    .frame(maxWidth: .infinity, alignment: .topTrailing)
-                            }.frame(width: 250, height: 20, alignment: .topLeading)
-                            Text(description ?? "dsadasasd")
-                                .font(.system(size: 13))
-                                .foregroundColor(Color.white)
-                                .frame(width: 250, height: 20, alignment: .topLeading)
+                                VStack (spacing:0){
+                                    Text(cardName ?? "Root")
+                                        .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    Text("\(infoYear ?? "2018") • \(Image(systemName: "person.2.fill")) \(infoPlayers ?? "2-4") • \(Image(systemName: "clock.fill")) \(infoTime ?? "60-90")")
+                                        .font(.custom("Avenir", size: sf.h * 0.02))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                .padding(.vertical)
+                                Spacer()
+                                if (showForSale){
+                                    LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .topLeading, endPoint: .bottomTrailing)
+                                        .mask {
+                                            Text("$")
+                                                .font(.custom("Avenir-Black", size: sf.h * 0.06))
+                                        }.frame(width: sf.w * 0.1)
+                                }
+                            }.padding(.horizontal)
                         }
-                    }.cornerRadius(10)
+                    }.cornerRadius(20)
                 })
-                .frame(width: width ?? 0, height: height ?? 0)
+                .frame(maxWidth: width ?? .infinity)
+                .aspectRatio(1.25, contentMode: .fit)
+                .scaleEffect(scale ?? 1)
+                .foregroundColor(Color.white)
         }
     }
 }
 
 struct CustomCards_Previews: PreviewProvider {
+    static var image = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
+    
     static var previews: some View {
-        CustomCards(roundedCorners: 20, cardName: "Root", image: "gameImageTest", width: sf.w * 0.5, height: sf.h * 0.22, description: "2018  •  2-4 Players  • 60-90 Mins", rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201")
+        CustomCards(roundedCorners: 60, cardName: "Root", imageUrl: image, scale: 1, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
     }
 }
