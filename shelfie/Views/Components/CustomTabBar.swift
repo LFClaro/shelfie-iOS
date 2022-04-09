@@ -15,7 +15,7 @@ struct CustomTabBar: View {
     @State var home = HomeView()
     @State var collection = CollectionView()
     @State var watchlist = Text("Watchlist")
-    @State var settings = Text("Settings")
+    @State var settings = SettingView()
     
     var body: some View {
         GeometryReader { geometry in
