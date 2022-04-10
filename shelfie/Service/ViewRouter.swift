@@ -17,5 +17,6 @@ enum Page {
     case home
     case collection
     case watchlist
-    case settings
+    case settings  
+
 }

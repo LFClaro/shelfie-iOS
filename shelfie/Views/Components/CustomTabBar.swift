@@ -10,13 +10,14 @@ import SwiftUI
 struct CustomTabBar: View {
     
     @StateObject var viewRouter: ViewRouter
-    @State var selectedTab = 0
-    let tabs = ["Full View", "List View"]
+    @State var selectedTab: Int = 0
     @State var showPopUp = false
     @State var home = HomeView()
-    @State var collection = CollectionView()
-    @State var watchlist = WatchlistView()
+    @State var collection = CardsListView()
     @State var settings = SettingView()
+    @State var view1: String = ""
+    @State var showForSale: Bool = false
+    @State var rank: String? = ""
     
     var body: some View {
         GeometryReader { geometry in
@@ -46,23 +47,36 @@ struct CustomTabBar: View {
                             Text("Your Virtual Shelf")
                                     .font(.custom("Avenir-Black", size: sf.h * 0.04))
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
-                                Text(title)
-                                    .frame(maxWidth: sf.w * 0.5)
-                            }
-                            .scaleEffect(0.6)
-                        }
-                        if viewRouter.currentPage == .watchlist {
+                            CardsListView().generateTabs(selectedTab: $selectedTab)
+                                .onTapGesture {
+                                    if selectedTab == 1 {
+                                        selectedTab = 0
+                                    }else {
+                                        selectedTab = 1
+                                    }
+                                    
+                                }.onAppear{
+                                    view1 = "collection"
+                                    showForSale = false
+                                    rank = nil
+                                }
+                        }else if viewRouter.currentPage == .watchlist {
                             Text("Your Watchlist")
                                     .font(.custom("Avenir-Black", size: sf.h * 0.04))
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            Tabs(tabs: .constant(tabs), selection: $selectedTab) {title, isSelected in
-                                Text(title)
-                                    .frame(maxWidth: sf.w * 0.5)
-                            }
-                            .scaleEffect(0.6)
+                            CardsListView().generateTabs(selectedTab: $selectedTab)
+                                .onTapGesture {
+                                    if selectedTab == 1 {
+                                        selectedTab = 0
+                                    }else {
+                                        selectedTab = 1
+                                    }
+                                    
+                                }.onAppear{
+                                    view1 = "watchlist"
+                                    showForSale = true
+                                    rank = "#1"
+                                }
                         }
                     }
                     .padding(.horizontal)
@@ -72,13 +86,18 @@ struct CustomTabBar: View {
                             case .home:
                                 home
                             case .collection:
-                                collection
+                                CardsListView {
+                                    return ($view1 , $selectedTab, $showForSale, $rank)
+                                }
                             case .watchlist:
-                                watchlist
+                                CardsListView {
+                                    return ( $view1, $selectedTab, $showForSale, $rank)
+                                }
                             case .settings:
                                 settings
                         }
                     }.padding(.horizontal)
+                       
                     ZStack {
                         if showPopUp {
                             PlusMenu(widthAndHeight: geometry.size.width/7)
@@ -126,7 +145,7 @@ struct CustomTabBar: View {
 
 struct CustomTabBar_Previews: PreviewProvider {
     static var previews: some View {
-        CustomTabBar(viewRouter: ViewRouter())
+        CustomTabBar(viewRouter: ViewRouter(), selectedTab: 0)
             .preferredColorScheme(.dark)
     }
 }
