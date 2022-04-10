@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    
     @State var searchText = ""
     @State var cardImage = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
-    
+
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false){
@@ -22,7 +23,9 @@ struct HomeView: View {
                     Text("Build your collection in a snap!")
                         .font(.custom("Avenir-Black", size: sf.h * 0.04))
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    CustomTextField(placeHolder: "Search", value: $searchText, roundedCorners: 10, textColor: .white, shadowRadius: 10, fontSize: sf.h * 0.03, bgColor: Color("bgSearchTxtField"), padding: sf.h * 0.02, rightViewImage: "magnifyingglass")
+                    CustomTextField(placeHolder: "Search", value: $searchText, roundedCorners: 10, textColor: .white, shadowRadius: 10, fontSize: sf.h * 0.03, bgColor: Color("bgSearchTxtField"), padding: sf.h * 0.02, rightViewImage: "magnifyingglass",changedValue: $searchText ,performChanged: { v in
+                        print(v)
+                    })
                         .frame(maxWidth: .infinity, idealHeight: sf.h * 0.1, alignment: .center)
                     Text("Browse Categories")
                         .font(.custom("Avenir-Black", size: sf.h * 0.04))

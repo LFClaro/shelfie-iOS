@@ -152,13 +152,13 @@
 				2554D96027EE516500AE50C7 /* Components */,
 				2554D95D27EE507C00AE50C7 /* WalkthroughView.swift */,
 				469FC05627EE52EE003E1D01 /* LaunchView.swift */,
+				2516996527EED60F00294C08 /* MainView.swift */,
+				25CA2DCA28017200008E789F /* ProductView.swift */,
+				463E0B132801AE1800582423 /* SettingView.swift */,
 				46860E812802E3F1006A8D16 /* LoginView */,
 				46860E7E2802E3C7006A8D16 /* RegisterView */,
-				2516996527EED60F00294C08 /* MainView.swift */,
 				46860E7B2802E393006A8D16 /* HomeView */,
-				25CA2DCA28017200008E789F /* ProductView.swift */,
 				46860E782802E22F006A8D16 /* CardsListView */,
-				463E0B132801AE1800582423 /* SettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -489,7 +489,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.ap;
 				PRODUCT_NAME = Shelfie;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -518,7 +518,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.ap;
 				PRODUCT_NAME = Shelfie;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

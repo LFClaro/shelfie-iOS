@@ -44,7 +44,6 @@ struct CardsListView: View {
         Tabs(tabs: .constant(tabs), selection: selectedTab) {title, isSelected in
             Text(title)
                 .frame(maxWidth: sf.w * 0.5)
-         
         }
         .scaleEffect(0.6)
     }

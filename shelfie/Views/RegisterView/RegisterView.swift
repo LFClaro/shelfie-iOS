@@ -50,24 +50,34 @@ struct RegisterView: View {
                     HStack{
                         VStack(alignment: .leading, spacing: sf.h * 0.005){
                             Text("First Name").font(.custom("Avenir", size: sf.h * 0.03))
-                            CustomTextField(value: $firstName, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05, padding: 0)
+                            CustomTextField(value: $firstName, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05, padding: 0, performChanged: {_ in
+                                
+                            })
                                 .frame(height: sf.h * 0.065)
                         }
                         Spacer()
                         VStack(alignment: .leading, spacing: sf.h * 0.005){
                             Text("Last Name").font(.custom("Avenir", size: sf.h * 0.03))
-                            CustomTextField(value: $lastName, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05, padding: 0)
+                            CustomTextField(value: $lastName, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05, padding: 0, performChanged: {_ in
+                                
+                            })
                                 .frame(height: sf.h * 0.065)
                         }
                     }
                     Text("Email").font(.custom("Avenir", size: sf.h * 0.03))
-                    CustomTextField(value: $email, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05)
+                    CustomTextField(value: $email, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05, performChanged: {_ in
+                        
+                    })
                         .frame(height: sf.h * 0.065)
                     Text("Password").font(.custom("Avenir", size: sf.h * 0.03))
-                    CustomTextField(value: $password, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05)
+                    CustomTextField(value: $password, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05, performChanged: {_ in
+                        
+                    })
                         .frame(height: sf.h * 0.065)
                     Text("Confirm Password").font(.custom("Avenir", size: sf.h * 0.03))
-                    CustomTextField(value: $confirmPassword, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05)
+                    CustomTextField(value: $confirmPassword, roundedCorners: 30, textColor: .white, shadowRadius: 5, fontSize: sf.h * 0.05, performChanged: {_ in
+                        
+                    })
                         .frame(height: sf.h * 0.065)
                 }.padding()
                 
