@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftyJSON
 
 struct HomeView: View {
     
+    @StateObject var model = HomeViewModel()
     @State var searchText = ""
     @State var cardImage = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
 
@@ -65,10 +67,13 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: sf.w * 0.05){
                         Spacer()
-                        CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
-                        CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: cardImage, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+                        ForEach((model.games.topGames?.sorted(by: >) ?? [:].sorted(by: >)), id: \.key) { key, value in
+                            CustomCards(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, rankNumber: value["rank"].stringValue, heartNumber: value["num_user_ratings"].stringValue, viewsNumber: value["visits"].stringValue, showForSale: true)
+                            }
+                        }
                         Spacer()
-                    }
+                    }.onAppear {
+                        model.getTopGames()
                 }
                 .frame(maxWidth: .infinity, minHeight: sf.h * 0.28, alignment: .center)
             }

@@ -54,7 +54,6 @@ struct CustomTabBar: View {
                                     }else {
                                         selectedTab = 1
                                     }
-                                    
                                 }.onAppear{
                                     view1 = "collection"
                                     showForSale = false

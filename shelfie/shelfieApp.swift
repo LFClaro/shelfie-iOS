@@ -11,22 +11,23 @@ let sf = ScaleFactor()
 
 @main
 struct shelfieApp: App {
+    
     @State private var showLaunchScreen: Bool = true
        
-       var body: some Scene {
-           WindowGroup {
-               NavigationView{
+    var body: some Scene {
+       WindowGroup {
+           NavigationView{
+               ZStack{
+                   WalkthroughView().navigationBarHidden(true)
                    ZStack{
-                       WalkthroughView().navigationBarHidden(true)
-                       ZStack{
-                           if showLaunchScreen{
-                               LaunchView(showLaunch: $showLaunchScreen).transition(.move(edge: .leading))
-                                   .statusBar(hidden: true)
-                           }
-                       }.zIndex(2.0)
-                   }
+                       if showLaunchScreen{
+                           LaunchView(showLaunch: $showLaunchScreen).transition(.move(edge: .leading))
+                               .statusBar(hidden: true)
+                       }
+                   }.zIndex(2.0)
                }
-               .preferredColorScheme(.dark)
            }
+           .preferredColorScheme(.dark)
        }
+    }
 }

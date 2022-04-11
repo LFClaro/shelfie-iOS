@@ -23,7 +23,6 @@ public struct PlaceHolderStyle: ViewModifier {
                     .padding(.horizontal, 15)
                     .foregroundColor(Color("placeHolderCol"))
                 }
-         
             }
             content
             .foregroundColor(Color.gray)

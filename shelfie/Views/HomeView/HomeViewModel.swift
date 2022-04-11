@@ -6,3 +6,19 @@
 //
 
 import Foundation
+import SwiftyJSON
+
+class HomeViewModel: ObservableObject {
+    
+    @Published var games = Games()
+    
+    func getTopGames(){
+        games.topGames = [:]
+        ApiService.shared.getAllBoardgames { [self] topGames in
+            topGames["games"].forEach { (s , j) in
+                games.topGames?[s] = j
+            }
+        }
+    }
+}
+

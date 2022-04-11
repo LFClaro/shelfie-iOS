@@ -8,7 +8,7 @@
 import SwiftyJSON
 
 struct Games {
-    var allGames: JSON?
+    var topGames: [String: JSON]?
     var gameByName: JSON?
     var gameById: JSON?
 }
