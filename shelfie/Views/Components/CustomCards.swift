@@ -56,7 +56,7 @@ struct CustomCards: View {
                                             .padding(3)
                                             .background(Color("green"))
                                             .cornerRadius(20)
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                                             .padding()
                                     }
                                     HStack{
@@ -75,7 +75,7 @@ struct CustomCards: View {
                                         Spacer()
                                         if (viewsNumber != nil) {
                                             HStack{
-                                                Image(systemName: "heart.fill")
+                                                Image(systemName: "eyes.inverse")
                                                     .font(.custom("Avenir-Black", size: geoH / 14))
                                                 Text(viewsNumber ?? "3254")
                                                     .font(.custom("Avenir-Black", size: geoH / 14))
