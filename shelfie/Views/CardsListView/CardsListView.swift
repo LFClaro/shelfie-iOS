@@ -22,10 +22,10 @@ struct CardsListView: View {
             Spacer()
             if handleStatus().1?.wrappedValue ?? 0 == 0 {
                 VStack(spacing: sf.w * 0.05){
-                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", viewsNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
-                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", viewsNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
-                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", viewsNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
-                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", viewsNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
+                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", watchlistNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
+                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", watchlistNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
+                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", watchlistNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
+                    CustomCards(roundedCorners: 20, gameName: "Root", imageUrl: cardImage, rankNumber: handleStatus().3?.wrappedValue ?? nil, heartNumber: "3201", watchlistNumber: "3201", showForSale: handleStatus().2?.wrappedValue ?? false)
                 }
             }else{
                 VStack (spacing: 20){

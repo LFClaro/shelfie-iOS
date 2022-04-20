@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import PhotosUI
+import Firebase
 
 struct CustomTabBar: View {
     
@@ -19,6 +21,19 @@ struct CustomTabBar: View {
     @State var showForSale: Bool = false
     @State var rank: String? = ""
     
+    @State var inputImage : UIImage?
+    @State private var imgToFirebase: UIImage?
+    @State private var imgFromFirebase: UIImage?
+    @State var isPickerShowing = false
+    
+    let tempimg = UIImage(named: "")
+    
+    var imgPicker = UIImagePickerController()
+    var imgRef : StorageReference {
+        return Storage.storage().reference().child("Images")
+    }
+    let filename = "Images/profilepic.png"
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack{
@@ -30,12 +45,19 @@ struct CustomTabBar: View {
                     HStack{
                         Spacer()
                         Image("logoShelfieWhite")
-                                .resizable()
-                                .scaledToFit()
+                            .resizable()
+                            .scaledToFit()
+                        //                        Button {
+                        //
+                        //                        } label: {
+                        //                            ProfilePicture(imageUrl: "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/dc/8a/d8/dc8ad8d7-4000-ae10-a7aa-975e6bc6752f/source/1000x1000bb.jpg")
+                        //                                .scaleEffect(1.3)
+                        //                                .padding(.trailing)
+                        //                        }
                         Button {
-                            
+                            isPickerShowing = true
                         } label: {
-                            ProfilePicture(imageUrl: "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/dc/8a/d8/dc8ad8d7-4000-ae10-a7aa-975e6bc6752f/source/1000x1000bb.jpg")
+                            ProfilePicture(profilepic: self.inputImage)
                                 .scaleEffect(1.3)
                                 .padding(.trailing)
                         }
@@ -45,8 +67,8 @@ struct CustomTabBar: View {
                     Group{
                         if viewRouter.currentPage == .collection {
                             Text("Your Virtual Shelf")
-                                    .font(.custom("Avenir-Black", size: sf.h * 0.04))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             CardsListView().generateTabs(selectedTab: $selectedTab)
                                 .onTapGesture {
                                     if selectedTab == 1 {
@@ -61,8 +83,8 @@ struct CustomTabBar: View {
                                 }
                         }else if viewRouter.currentPage == .watchlist {
                             Text("Your Watchlist")
-                                    .font(.custom("Avenir-Black", size: sf.h * 0.04))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(.custom("Avenir-Black", size: sf.h * 0.04))
+                                .frame(maxWidth: .infinity, alignment: .leading)
                             CardsListView().generateTabs(selectedTab: $selectedTab)
                                 .onTapGesture {
                                     if selectedTab == 1 {
@@ -82,21 +104,21 @@ struct CustomTabBar: View {
                     .padding(.bottom)
                     ScrollView(.vertical, showsIndicators: false){
                         switch viewRouter.currentPage {
-                            case .home:
-                                home
-                            case .collection:
-                                CardsListView {
-                                    return ($view1 , $selectedTab, $showForSale, $rank)
-                                }
-                            case .watchlist:
-                                CardsListView {
-                                    return ( $view1, $selectedTab, $showForSale, $rank)
-                                }
-                            case .settings:
-                                settings
+                        case .home:
+                            home
+                        case .collection:
+                            CardsListView {
+                                return ($view1 , $selectedTab, $showForSale, $rank)
+                            }
+                        case .watchlist:
+                            CardsListView {
+                                return ( $view1, $selectedTab, $showForSale, $rank)
+                            }
+                        case .settings:
+                            settings
                         }
                     }.padding(.horizontal)
-                       
+                    
                     ZStack {
                         if showPopUp {
                             PlusMenu(widthAndHeight: geometry.size.width/7)
@@ -138,7 +160,80 @@ struct CustomTabBar: View {
                 .edgesIgnoringSafeArea(.bottom)
             }
         }
+        .onChange(of: inputImage) { _ in loadImage() }
+        .sheet(isPresented: $isPickerShowing) {
+            ImagePicker(image: $inputImage)
+        }
         .navigationBarHidden(true)
+    }
+    
+    func loadImage() {
+        print("---------Inside LoadImage------")
+        guard let inputImage = inputImage else { return }
+        imgToFirebase = inputImage
+        uploadToFirebase(self)
+        downloadFromFirebase(self)
+    }
+    
+    func uploadToFirebase(_ sender: Any) {
+        //MARK: - Upload our image to Firebase
+        print("---------Inside Upload------")
+        if(imgToFirebase != nil) {
+            print("------------------inside not null---------------")
+            //MARK: - If image view is not nil, and upload button pressed change status label text
+            
+            //MARK: - If image view has an image, continue, if not return this function
+            guard let image = imgToFirebase else {
+                return
+            }
+            
+            //MARK: - Compress image selected to jpeg data to begin upload process
+            guard let imageData = image.jpegData(compressionQuality: 1) else {
+                return
+            }
+            
+            //MARK: - Save image under our firebase ref location
+            let uploadRef = imgRef.child(filename)
+            
+            let uploadTask = uploadRef.putData(imageData, metadata: nil) { (metadata, error) in
+                //MARK: - Once upload is complete, print information on upload, and update status label
+                print("Upload task is finished")
+                print(metadata ?? "No metadata")
+                print(error ?? "No Error")
+            }
+            
+            //MARK: - Observe progress of upload, until is finished uploading
+            uploadTask.observe(.progress) { (snapshot) in
+                print(snapshot.progress ?? "No More Progress")
+            }
+            
+            //MARK: - Resume upload until it is finished
+            uploadTask.resume()
+        }
+    }
+    
+    func downloadFromFirebase(_ sender: Any) {
+        //MARK: - Download our image from Firebase
+        print("---------Inside Download------")
+        
+        //MARK: - We need to download image as a set size, first get a reference to our image on storage
+        let downloadRef = imgRef.child(filename)
+        
+        let downloadTask = downloadRef.getData(maxSize: 1*4048*4048) { (data, error) in
+            //MARK: - Download task, download data and create UIImage
+            if let data = data {
+                let image = UIImage(data: data)
+                self.imgFromFirebase = image
+                print("------------------inside Image---------------")
+            }
+        }
+        //MARK: - Observe download progress
+        downloadTask.observe(.progress) { (snapshot) in
+            print(snapshot.progress ?? "No More Progress")
+        }
+        
+        //MARK: - Download the image
+        downloadTask.resume()
     }
 }
 
@@ -150,6 +245,10 @@ struct CustomTabBar_Previews: PreviewProvider {
 }
 
 struct PlusMenu: View {
+    //Camera Logic
+    @State var showScanner: Bool = false
+    @State var isRecognizing: Bool = false
+    @ObservedObject var recognizedContent = RecognizedContent()
     
     let widthAndHeight: CGFloat
     
@@ -159,11 +258,43 @@ struct PlusMenu: View {
                 Circle()
                     .fill(AngularGradient(colors: [Color("BtnPurple"), Color("bgButton")], center: .bottom))
                     .frame(width: widthAndHeight, height: widthAndHeight)
-                Image(systemName: "camera.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(15)
-                    .frame(width: widthAndHeight, height: widthAndHeight)
+                Button {
+                    showScanner.toggle()
+                } label: {
+                    Image(systemName: "camera.fill")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .padding(15)
+                        .frame(width: widthAndHeight, height: widthAndHeight)
+                }
+                .sheet(isPresented: $showScanner, content: {
+                    ScannerManager { result in
+                        switch result {
+                        case .success(let scannedImages):
+                            isRecognizing = true
+                            TextRecognition(scannedImages: scannedImages,
+                                            recognizedContent: recognizedContent) {
+                                // Text recognition is finished, hide the progress indicator.
+                                isRecognizing = false
+                            }.recognizeText()
+                        case .failure(let error):
+                            print(error.localizedDescription)
+                        }
+                        
+                        showScanner = false
+                    } didCancelScanning: {
+                        // Dismiss the scanner controller and the sheet.
+                        showScanner = false
+                    }
+                })
+//                List(recognizedContent.items, id: \.id) { textItem in
+////                    NavigationLink(destination: TextPreviewView(text: textItem.text)) {
+////                        Text(String(textItem.text.prefix(50)).appending("..."))
+////                    }
+//                }
+                ForEach(recognizedContent.items, id: \.id) {textItem in
+                    Text(textItem.text)
+                }
             }
             ZStack {
                 Circle()
@@ -198,8 +329,8 @@ struct TabBarIcon: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: width, height: height)
                             .padding(.top, 10)
-//                        Text(tabName)
-//                            .font(.footnote)
+                        //                        Text(tabName)
+                        //                            .font(.footnote)
                     }
             } else {
                 LinearGradient(colors: [Color("NavUnselected"), Color("placeHolderCol")], startPoint: .topLeading, endPoint: .bottomTrailing)
@@ -209,8 +340,8 @@ struct TabBarIcon: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: width, height: height)
                             .padding(.top, 10)
-//                        Text(tabName)
-//                            .font(.footnote)
+                        //                        Text(tabName)
+                        //                            .font(.footnote)
                     }
             }
             

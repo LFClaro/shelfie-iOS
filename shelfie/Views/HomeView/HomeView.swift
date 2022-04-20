@@ -45,8 +45,8 @@ struct HomeView: View {
                                     .resizable().scaledToFit()
                                 Image("party")
                                     .resizable().scaledToFit()
-                                Image("all")
-                                    .resizable().scaledToFit()
+//                                Image("all")
+//                                    .resizable().scaledToFit()
                                 Spacer()
                             }
                             .frame(width: sf.w * 0.86, height: sf.h * 0.1, alignment: .center)
@@ -67,8 +67,8 @@ struct HomeView: View {
                 ScrollView(.horizontal, showsIndicators: false){
                     HStack(spacing: sf.w * 0.05){
                         Spacer()
-                        ForEach((model.games.topGames?.sorted(by: >) ?? [:].sorted(by: >)), id: \.key) { key, value in
-                            CustomCards(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, rankNumber: value["rank"].stringValue, heartNumber: value["num_user_ratings"].stringValue, viewsNumber: value["visits"].stringValue, showForSale: true)
+                        ForEach((model.games.topGames?.sorted(by: <) ?? [:].sorted(by: <)), id: \.key) { key, value in
+                            CustomCards(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, infoYear: value["year_published"].stringValue, infoPlayers: value["players"].stringValue, infoTime: value["playtime"].stringValue, rankNumber: value["rank"].stringValue, heartNumber: value["num_user_ratings"].stringValue, watchlistNumber: value["lists"].stringValue, showForSale: true)
                             }
                         }
                         Spacer()

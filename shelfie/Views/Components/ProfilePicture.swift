@@ -6,23 +6,27 @@
 //
 
 import SwiftUI
-import Kingfisher
 
 struct ProfilePicture: View {
-    var imageUrl: String?
+//    var imageUrl: String?
+    var profilepic : UIImage?
     var id: Int?
     var body: some View {
         GeometryReader { geo in
             ZStack {
                 Group {
-                    if imageUrl != nil {
-                        AsyncImage(url: URL(string: imageUrl ?? "")) { image in
-                            image.resizable()
-                        } placeholder: {
-                            ProgressView()
-                                .scaleEffect(2)
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        }
+//                    if imageUrl != nil {
+//                        AsyncImage(url: URL(string: imageUrl ?? "")) { image in
+//                            image.resizable()
+//                        } placeholder: {
+//                            ProgressView()
+//                                .scaleEffect(2)
+//                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+//                        }
+                    if((profilepic) != nil)
+                    {
+                        Image(uiImage: profilepic!)
+                            .resizable()
                     } else {
                         Image(systemName: "person.crop.circle.fill")
                             .resizable()

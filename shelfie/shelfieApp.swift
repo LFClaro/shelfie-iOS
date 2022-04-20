@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 let sf = ScaleFactor()
 
@@ -13,21 +14,24 @@ let sf = ScaleFactor()
 struct shelfieApp: App {
     
     @State private var showLaunchScreen: Bool = true
-       
+    
     var body: some Scene {
-       WindowGroup {
-           NavigationView{
-               ZStack{
-                   WalkthroughView().navigationBarHidden(true)
-                   ZStack{
-                       if showLaunchScreen{
-                           LaunchView(showLaunch: $showLaunchScreen).transition(.move(edge: .leading))
-                               .statusBar(hidden: true)
-                       }
-                   }.zIndex(2.0)
-               }
-           }
-           .preferredColorScheme(.dark)
-       }
+        WindowGroup {
+            NavigationView{
+                ZStack{
+                    WalkthroughView().navigationBarHidden(true)
+                    ZStack{
+                        if showLaunchScreen{
+                            LaunchView(showLaunch: $showLaunchScreen).transition(.move(edge: .leading))
+                                .statusBar(hidden: true)
+                        }
+                    }.zIndex(2.0)
+                }
+            }
+            .preferredColorScheme(.dark)
+        }
+    }
+    init() {
+        FirebaseApp.configure()
     }
 }
