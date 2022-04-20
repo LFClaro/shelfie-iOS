@@ -11,6 +11,7 @@ import SwiftyJSON
 class HomeViewModel: ObservableObject {
     
     @Published var games = Games()
+    static var shared = HomeViewModel()
     
     func getTopGames(){
         games.topGames = [:]

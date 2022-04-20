@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct ResultView: View {
-    @EnvironmentObject var model: ResultViewModel
+    @EnvironmentObject var model:  ResultViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State var didScreenLoad: Bool = false
     @State var rowImage = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324722072.jpg"
-
+    @ObservedObject var home = HomeViewModel.shared
     
     var body: some View {
         ZStack{
@@ -45,14 +45,18 @@ struct ResultView: View {
                         .foregroundColor(.white)
                 }
                 ScrollView(.vertical){
-                    CustomRows(roundedCorners: 60, gameName: "Catan", imageUrl: rowImage, infoPlayers: "2-4", infoTime: "60-90", showHeart: false, showEyes: false, showForSale: false)
-                        ForEach(model.items, id: \.id) {textItem in
-                            Text(textItem.text)
+                    ForEach((model.filters.sorted(by: <) ), id: \.key) { key, value in
+                        CustomRows(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, infoPlayers: value["players"].stringValue, infoTime: value["playtime"].stringValue, showHeart: true, showEyes: true, showForSale: true)
+                    }.onAppear{
+                        if !model.items.isEmpty{
+                            model.getSearchedGames(games: home.games.topGames ?? [:])
                         }
+                    }
                 }
             }
         }.onAppear {
-            model.getSearchedGames()
+           
+           
             didScreenLoad.toggle()
         }
     }

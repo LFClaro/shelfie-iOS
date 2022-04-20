@@ -10,7 +10,7 @@ import SwiftyJSON
 
 struct HomeView: View {
     
-    @StateObject var model = HomeViewModel()
+    @StateObject var model = HomeViewModel.shared
     @State var searchText = ""
     @State var cardImage = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
 
