@@ -10,7 +10,8 @@ import Vision
 
 struct TextRecognition {
     var scannedImages: [UIImage]
-    @ObservedObject var recognizedContent: RecognizedContent
+    @ObservedObject var resultViewModel: ResultViewModel
+    
     var didFinishRecognition: () -> Void
     
     private func getTextRecognitionRequest(with textItem: TextItem, currentImageIndex: Int) -> VNRecognizeTextRequest {
@@ -47,7 +48,7 @@ struct TextRecognition {
                     try requestHandler.perform([getTextRecognitionRequest(with: textItem, currentImageIndex: 0)])
      
                         DispatchQueue.main.async {
-                            recognizedContent.items.append(textItem)
+                            resultViewModel.items.append(textItem)
                         }
      
                 } catch {

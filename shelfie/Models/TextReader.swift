@@ -16,6 +16,3 @@ class TextItem: Identifiable {
     }
 }
 
-class RecognizedContent: ObservableObject {
-    @Published var items = [TextItem]()
-}

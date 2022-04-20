@@ -122,7 +122,7 @@ struct CustomTabBar: View {
                     ZStack {
                         if showPopUp {
                             PlusMenu(widthAndHeight: geometry.size.width/7)
-                                .offset(y: -geometry.size.height/6)
+                                .offset(y: -geometry.size.height/6).environmentObject(ResultViewModel())
                         }
                         HStack {
                             TabBarIcon(viewRouter: viewRouter, assignedPage: .home, width: geometry.size.width/5, height: geometry.size.height/28, systemIconName: "house.fill", tabName: "Home")
@@ -244,112 +244,5 @@ struct CustomTabBar_Previews: PreviewProvider {
     }
 }
 
-struct PlusMenu: View {
-    //Camera Logic
-    @State var showScanner: Bool = false
-    @State var isRecognizing: Bool = false
-    @ObservedObject var recognizedContent = RecognizedContent()
-    
-    let widthAndHeight: CGFloat
-    
-    var body: some View {
-        HStack(spacing: 50) {
-            ZStack {
-                Circle()
-                    .fill(AngularGradient(colors: [Color("BtnPurple"), Color("bgButton")], center: .bottom))
-                    .frame(width: widthAndHeight, height: widthAndHeight)
-                Button {
-                    showScanner.toggle()
-                } label: {
-                    Image(systemName: "camera.fill")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .padding(15)
-                        .frame(width: widthAndHeight, height: widthAndHeight)
-                }
-                .sheet(isPresented: $showScanner, content: {
-                    ScannerManager { result in
-                        switch result {
-                        case .success(let scannedImages):
-                            isRecognizing = true
-                            TextRecognition(scannedImages: scannedImages,
-                                            recognizedContent: recognizedContent) {
-                                // Text recognition is finished, hide the progress indicator.
-                                isRecognizing = false
-                            }.recognizeText()
-                        case .failure(let error):
-                            print(error.localizedDescription)
-                        }
-                        
-                        showScanner = false
-                    } didCancelScanning: {
-                        // Dismiss the scanner controller and the sheet.
-                        showScanner = false
-                    }
-                })
-//                List(recognizedContent.items, id: \.id) { textItem in
-////                    NavigationLink(destination: TextPreviewView(text: textItem.text)) {
-////                        Text(String(textItem.text.prefix(50)).appending("..."))
-////                    }
-//                }
-                ForEach(recognizedContent.items, id: \.id) {textItem in
-                    Text(textItem.text)
-                }
-            }
-            ZStack {
-                Circle()
-                    .fill(AngularGradient(colors: [Color("BtnPurple"), Color("bgButton")], center: .bottom))
-                    .frame(width: widthAndHeight, height: widthAndHeight)
-                Image(systemName: "folder.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .padding(15)
-                    .frame(width: widthAndHeight, height: widthAndHeight)
-            }
-        }
-        .transition(.scale)
-    }
-}
 
-struct TabBarIcon: View {
-    
-    @StateObject var viewRouter: ViewRouter
-    let assignedPage: Page
-    
-    let width, height: CGFloat
-    let systemIconName, tabName: String
-    
-    var body: some View {
-        VStack {
-            if (viewRouter.currentPage == assignedPage) {
-                LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .topLeading, endPoint: .bottomTrailing)
-                    .mask {
-                        Image(systemName: systemIconName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: width, height: height)
-                            .padding(.top, 10)
-                        //                        Text(tabName)
-                        //                            .font(.footnote)
-                    }
-            } else {
-                LinearGradient(colors: [Color("NavUnselected"), Color("placeHolderCol")], startPoint: .topLeading, endPoint: .bottomTrailing)
-                    .mask {
-                        Image(systemName: systemIconName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: width, height: height)
-                            .padding(.top, 10)
-                        //                        Text(tabName)
-                        //                            .font(.footnote)
-                    }
-            }
-            
-            Spacer()
-        }
-        .padding(.horizontal, -4)
-        .onTapGesture {
-            viewRouter.currentPage = assignedPage
-        }
-    }
-}
+
