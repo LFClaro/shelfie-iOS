@@ -13,8 +13,9 @@ struct ResultView: View {
             Image("bg").resizable().edgesIgnoringSafeArea(.all)
             Text("Games detected in your SHELFIE!")
                 .font(.custom("Avenir-Black", size: sf.h * 0.04))
-                .multilineTextAlignment(.center)
+                .multilineTextAlignment(.leading)
         }
+        .foregroundColor(.white)
     }
 }
 
