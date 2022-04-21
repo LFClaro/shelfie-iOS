@@ -18,7 +18,7 @@ struct CustomCards: View {
     var infoTime: String?
     var rankNumber: String?
     var heartNumber: String?
-    var viewsNumber: String?
+    var watchlistNumber: String?
     var showForSale = true
     
     var body: some View {
@@ -56,7 +56,7 @@ struct CustomCards: View {
                                             .padding(3)
                                             .background(Color("green"))
                                             .cornerRadius(20)
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                                             .padding()
                                     }
                                     HStack{
@@ -65,7 +65,7 @@ struct CustomCards: View {
                                                 Image(systemName: "heart.fill")
                                                     .font(.custom("Avenir-Black", size: geoH / 14))
                                                 Text(heartNumber ?? "3254")
-                                                    .font(.custom("Avenir-Black", size: geoH / 14))
+                                                    .font(.custom("Avenir-Black", size: geoW / 18))
                                             }
                                             .frame(width: geoW / 3.8, height: geoH / 9, alignment: .center)
                                             .padding(3)
@@ -73,14 +73,14 @@ struct CustomCards: View {
                                             .cornerRadius(20)
                                         }
                                         Spacer()
-                                        if (viewsNumber != nil) {
+                                        if (watchlistNumber != nil) {
                                             HStack{
-                                                Image(systemName: "heart.fill")
+                                                Image(systemName: "eyes")
                                                     .font(.custom("Avenir-Black", size: geoH / 14))
-                                                Text(viewsNumber ?? "3254")
-                                                    .font(.custom("Avenir-Black", size: geoH / 14))
+                                                Text(watchlistNumber ?? "3254")
+                                                    .font(.custom("Avenir-Black", size: geoW / 18))
                                             }
-                                            .frame(width: geoW / 3.8, height: geoH / 9, alignment: .center)
+                                            .frame(width: geoW / 3.4, height: geoH / 9, alignment: .center)
                                             .padding(3)
                                             .background(Color("babyBlue"))
                                             .cornerRadius(20)
@@ -94,6 +94,7 @@ struct CustomCards: View {
                                         Text(gameName ?? "Root")
                                             .font(.custom("Avenir-Black", size: geoH / 10))
                                             .frame(maxWidth: .infinity, alignment: .leading)
+                                            .fixedSize(horizontal: false, vertical: true)
                                         Text("\(infoYear ?? "2018") • \(Image(systemName: "person.2.fill")) \(infoPlayers ?? "2-4") • \(Image(systemName: "clock.fill")) \(infoTime ?? "60-90")")
                                             .font(.custom("Avenir", size: geoH / 16))
                                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -124,6 +125,6 @@ struct CustomCards_Previews: PreviewProvider {
     static var image = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
     
     static var previews: some View {
-        CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: image, rankNumber: "#1", heartNumber: "3201", viewsNumber: "3201", showForSale: true)
+        CustomCards(roundedCorners: 60, gameName: "Root", imageUrl: image, rankNumber: "#1", heartNumber: "3201", watchlistNumber: "3201", showForSale: true)
     }
 }

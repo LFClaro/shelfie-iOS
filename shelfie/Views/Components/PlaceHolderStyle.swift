@@ -8,14 +8,14 @@
 import SwiftUI
 
 public struct PlaceHolderStyle: ViewModifier {
-    var showPlaceHolder: Binding<Bool>?
+    var hidePlaceHolder: Binding<Bool>?
     var placeholder: String?
     var placeHolderFontSize: CGFloat?
     var rightViewImage: String?
     var rightViewSize: CGFloat?
     public func body(content: Content) -> some View {
         ZStack(alignment: .leading) {
-            if showPlaceHolder?.wrappedValue ?? true {
+            if !(hidePlaceHolder?.wrappedValue ?? false) {
                 HStack{
                     Image(systemName:rightViewImage ?? "")
                         .foregroundColor(Color("placeHolderCol"))
@@ -23,7 +23,6 @@ public struct PlaceHolderStyle: ViewModifier {
                     .padding(.horizontal, 15)
                     .foregroundColor(Color("placeHolderCol"))
                 }
-         
             }
             content
             .foregroundColor(Color.gray)

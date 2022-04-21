@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CustomTextField: View {
-    @State var isShowPlaceHolder = true
+    @State var hidePlaceHolder = false
     var placeHolder: String?
     var value: Binding<String>
     var roundedCorners: CGFloat?
@@ -21,19 +21,30 @@ struct CustomTextField: View {
     var padding: CGFloat?
     var rightViewImage: String?
     var rightViewSize: CGFloat?
+    var changedValue: Binding<String>?
+    var performChanged : ((_ V: String) -> Void)
     
     var body: some View {
-        TextField("", text: value)
-         .modifier(PlaceHolderStyle(showPlaceHolder: $isShowPlaceHolder, placeholder: placeHolder, rightViewImage: rightViewImage ?? "", rightViewSize: rightViewSize ?? 0))
+        TextField("", text: value, onEditingChanged: {isEdit in
+            if !isEdit {
+                withAnimation(.easeInOut(duration: 1.0)){
+                    hidePlaceHolder = false
+                }
+            }
+            else {
+                withAnimation(.easeInOut(duration: 1.0)){
+                    hidePlaceHolder = true
+                }
+            }
+        })
+         .modifier(PlaceHolderStyle(hidePlaceHolder: $hidePlaceHolder, placeholder: placeHolder, rightViewImage: rightViewImage ?? "", rightViewSize: rightViewSize ?? 0))
          .padding(padding ?? 0)
          .background(bgColor ?? Color("TxtFieldBlue"))
          .cornerRadius(roundedCorners ?? 0)
          .foregroundColor(textColor)
          .font(.custom("Open Sans", size: fontSize ?? 20))
          .shadow(radius: shadowRadius ?? 10)
-         .onChange(of: isShowPlaceHolder) { newValue in
-             isShowPlaceHolder.toggle()
-         }
+         .onChange(of: changedValue?.wrappedValue ?? "", perform: performChanged)
     }
 }
 
@@ -41,6 +52,8 @@ struct CustomTextField_Previews: PreviewProvider {
     @State static var value = ""
     @State static var color = Color("TxtFieldBlue")
     static var previews: some View {
-        CustomTextField(value: $value, bgColor: color)
+        CustomTextField(value: $value, bgColor: color, performChanged: {_ in 
+            
+        })
     }
 }
