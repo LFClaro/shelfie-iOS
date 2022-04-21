@@ -14,12 +14,13 @@ let sf = ScaleFactor()
 struct shelfieApp: App {
     
     @State private var showLaunchScreen: Bool = true
+    @State var gameId = "TAAifFP590"
     
     var body: some Scene {
         WindowGroup {
             NavigationView{
                 ZStack{
-                    WalkthroughView().navigationBarHidden(true)
+                    GameView(gameId: $gameId).navigationBarHidden(true)
                     ZStack{
                         if showLaunchScreen{
                             LaunchView(showLaunch: $showLaunchScreen).transition(.move(edge: .leading))

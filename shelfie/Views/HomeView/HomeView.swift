@@ -12,7 +12,6 @@ struct HomeView: View {
     
     @StateObject var model = HomeViewModel.shared
     @State var searchText = ""
-    @State var cardImage = "https://d2k4q26owzy373.cloudfront.net/350x350/games/uploaded/1629324760985.jpg"
 
     var body: some View {
         
@@ -37,16 +36,36 @@ struct HomeView: View {
                             Color("DarkPurple")
                             HStack{
                                 Spacer()
-                                Image("cards")
-                                    .resizable().scaledToFit()
-                                Image("Dice")
-                                    .resizable().scaledToFit()
-                                Image("puzzle")
-                                    .resizable().scaledToFit()
-                                Image("party")
-                                    .resizable().scaledToFit()
-//                                Image("all")
-//                                    .resizable().scaledToFit()
+                                Button {
+                                    
+                                } label: {
+                                    Image("cards")
+                                        .resizable().scaledToFit()
+                                }
+                                Button {
+                                    
+                                } label: {
+                                    Image("Dice")
+                                        .resizable().scaledToFit()
+                                }
+                                Button {
+                                    
+                                } label: {
+                                    Image("puzzle")
+                                        .resizable().scaledToFit()
+                                }
+                                Button {
+                                    
+                                } label: {
+                                    Image("party")
+                                        .resizable().scaledToFit()
+                                }
+//                                Button {
+//
+//                                } label: {
+//                                    Image("all")
+//                                        .resizable().scaledToFit()
+//                                }
                                 Spacer()
                             }
                             .frame(width: sf.w * 0.86, height: sf.h * 0.1, alignment: .center)
