@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @StateObject var model = HomeViewModel.shared
     @State var searchText = ""
-
+    
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false){
@@ -27,7 +27,7 @@ struct HomeView: View {
                     CustomTextField(placeHolder: "Search", value: $searchText, roundedCorners: 10, textColor: .white, shadowRadius: 10, fontSize: sf.h * 0.03, bgColor: Color("bgSearchTxtField"), padding: sf.h * 0.02, rightViewImage: "magnifyingglass",changedValue: $searchText ,performChanged: { v in
                         print(v)
                     })
-                        .frame(maxWidth: .infinity, idealHeight: sf.h * 0.1, alignment: .center)
+                    .frame(maxWidth: .infinity, idealHeight: sf.h * 0.1, alignment: .center)
                     Text("Browse Categories")
                         .font(.custom("Avenir-Black", size: sf.h * 0.04))
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -60,12 +60,12 @@ struct HomeView: View {
                                     Image("party")
                                         .resizable().scaledToFit()
                                 }
-//                                Button {
-//
-//                                } label: {
-//                                    Image("all")
-//                                        .resizable().scaledToFit()
-//                                }
+                                //                                Button {
+                                //
+                                //                                } label: {
+                                //                                    Image("all")
+                                //                                        .resizable().scaledToFit()
+                                //                                }
                                 Spacer()
                             }
                             .frame(width: sf.w * 0.86, height: sf.h * 0.1, alignment: .center)
@@ -87,12 +87,15 @@ struct HomeView: View {
                     HStack(spacing: sf.w * 0.05){
                         Spacer()
                         ForEach((model.games.topGames?.sorted(by: <) ?? [:].sorted(by: <)), id: \.key) { key, value in
-                            CustomCards(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, infoYear: value["year_published"].stringValue, infoPlayers: value["players"].stringValue, infoTime: value["playtime"].stringValue, rankNumber: value["rank"].stringValue, heartNumber: value["num_user_ratings"].stringValue, watchlistNumber: value["lists"].stringValue, showForSale: true)
+                            
+                            NavigationLink(destination: GameView(gameId: value["id"].stringValue)) {
+                                CustomCards(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, infoYear: value["year_published"].stringValue, infoPlayers: value["players"].stringValue, infoTime: value["playtime"].stringValue, rankNumber: value["rank"].stringValue, heartNumber: value["num_user_ratings"].stringValue, watchlistNumber: value["lists"].stringValue, showForSale: true)
                             }
                         }
-                        Spacer()
-                    }.onAppear {
-                        model.getTopGames()
+                    }
+                    Spacer()
+                }.onAppear {
+                    model.getTopGames()
                 }
                 .frame(maxWidth: .infinity, minHeight: sf.h * 0.28, alignment: .center)
             }

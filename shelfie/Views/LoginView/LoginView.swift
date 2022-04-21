@@ -73,12 +73,20 @@ struct LoginView: View {
                         }
                 }.padding().frame(width: sf.w * 0.75)
                 
+                
                 NavigationLink {
                     MainView()
                 } label: {
-                    Image("getStartedButton")
+                    HStack{
+                        Text("LOGIN")
+                            .font(Font.custom("Avenir-Black", size: 0.06 * sf.w))
+                    }
+                    .foregroundColor(Color.white)
+                    .frame(width: sf.w * 0.6, height: sf.h * 0.06)
+                    .background(LinearGradient(gradient: Gradient(colors: [Color("BtnBlue"), Color("BtnPurple")]), startPoint: .top, endPoint: .bottom))
+                    .cornerRadius(30)
+                    .shadow(color: Color.black.opacity(0.5), radius: 2, x: 1, y: 1)
                 }
-                ButtonView(text: "LOGIN").padding()
                 
                 Spacer()
                 

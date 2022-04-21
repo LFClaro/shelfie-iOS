@@ -11,26 +11,26 @@ struct ButtonView: View {
     var sf = ScaleFactor()
     var text: String?
     var fontSize: CGFloat?
-    var hTextPadding: CGFloat?
+    var horizontalPadding: CGFloat?
     var color = LinearGradient(gradient: Gradient(colors: [Color("BtnBlue"), Color("BtnPurple")]), startPoint: .top, endPoint: .bottom)
     var height: CGFloat?
     var width: CGFloat?
+    var sfSymbol: String?
     var action: (() -> Void)?
-    var image: String?
     
     var body: some View {
         Button(action: self.action ?? {}) {
             HStack{
-                Image(systemName: image ?? "plus.circle.fill")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(alignment: .leading)
-                        .padding(sf.h * 0.01)
-                Text(text ?? "vghvhjvhjvhjvhvh")
-                .font(Font.custom("Avenir-Black", size: fontSize ?? 0.027 * sf.w))
-                .padding(.horizontal, hTextPadding ?? 0.07 * sf.h)
-                .foregroundColor(Color.white)
-
+                if sfSymbol != nil {
+                    Image(systemName: sfSymbol ?? "plus.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(alignment: .leading)
+                            .padding(sf.h * 0.01)
+                }
+                Text(text ?? "Button")
+                .font(Font.custom("Avenir-Black", size: fontSize ?? 0.06 * sf.w))
+                .padding(.horizontal, horizontalPadding ?? 0)
             }
         }
         .foregroundColor(Color.white)

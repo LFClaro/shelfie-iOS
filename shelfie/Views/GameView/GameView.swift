@@ -9,9 +9,9 @@ import SwiftUI
 import SwiftyJSON
 
 struct GameView: View {
-    @Binding var gameId : String
+    @State var gameId : String
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var model = GameViewModel.shared
-    @State var gameJSON = JSON()
     
     var body: some View {
         
@@ -27,41 +27,52 @@ struct GameView: View {
                         .frame(maxHeight: sf.h * 0.3)
                         .clipped()
                         .opacity(0.4)
-                    Color("DarkPurple")
-                        .frame(maxHeight: sf.h * 0.1)
-                        .frame(maxHeight: .infinity, alignment: .bottom)
-                    if let imageUrl = gameJSON["images"]["original"].stringValue {
+                    if let imageUrl = model.games.gameById?["images"]["original"].stringValue {
                         AsyncImage(url: URL(string: imageUrl)) { image in
-                            image.resizable().scaledToFill()
+                            image.resizable().scaledToFit()
+                                .frame(maxHeight: sf.h * 0.3)
                         } placeholder: {
                             ProgressView()
-                                .scaleEffect(6)
+                                .scaleEffect(4)
                                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                         }
-                    } else {
-                        Image("bgPattern")
-                            .resizable()
-                            .scaledToFill()
                     }
+                    Color("bgSearchTxtField")
+                        .frame(maxHeight: sf.h * 0.1)
+                        .frame(maxHeight: .infinity, alignment: .bottom)
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Game")
+                            Text("\(model.games.gameById?["name"].stringValue ?? "")")
                                 .font(.custom("Avenir-Black", size: sf.w * 0.07))
                             HStack{
-                                Text("2018 • ").font(.caption)
-                                Text("2-4 Players • ").font(.caption)
-                                Text("60-90 Minutes").font(.caption)
+                                Text("\(model.games.gameById?["year_published"].stringValue ?? "") • ").font(.caption)
+                                Text("\(model.games.gameById?["players"].stringValue ?? "") Players • ").font(.caption)
+                                Text("\(model.games.gameById?["playtime"].stringValue ?? "") Minutes").font(.caption)
                             }
                         }
-                        ButtonView(text: "Buy It!", fontSize: sf.w * 0.05, hTextPadding: 0, color: LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .top, endPoint: .bottom), width: sf.w * 0.35, action: {
-                            
-                        }, image: "dollarsign.circle.fill")
+                        NavigationLink(destination: BuyView(gameId: gameId)) {
+                            HStack{
+                                Image(systemName: "dollarsign.circle.fill")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(alignment: .leading)
+                                    .padding(5)
+                                Text("Buy It!")
+                                    .font(Font.custom("Avenir-Black", size: sf.w * 0.045))
+                            }
+                            .frame(width: sf.w * 0.3, height: 0.06 * sf.h)
+                            .background(LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .top, endPoint: .bottom))
+                            .cornerRadius(30)
+                            .shadow(color: Color.black.opacity(0.5), radius: 2, x: 1, y: 1)
+                        }
                     }.padding()
                         .frame(maxHeight: .infinity, alignment: .bottomLeading)
-                    Image(systemName: "chevron.backward")
-                        .font(.largeTitle.bold())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
+                    Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
+                        Image(systemName: "chevron.backward")
+                            .font(.largeTitle.bold())
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                    }
                 }
                 .ignoresSafeArea()
                 
@@ -69,21 +80,21 @@ struct GameView: View {
                     VStack{
                         HStack{
                             VStack{
-                                Text("3221 people like this")
-                                ButtonView(text: "Add to Collection", fontSize: sf.w * 0.04, hTextPadding: 0, color: LinearGradient(colors: [Color("red"), Color("red")], startPoint: .top, endPoint: .bottom), width: sf.w * 0.4, action: {
+                                Text("\(model.games.gameById?["num_user_ratings"].stringValue.htmlToString ?? "") people have it")
+                                ButtonView(text: "Add to Collection", fontSize: sf.w * 0.04, color: LinearGradient(colors: [Color("red"), Color("red")], startPoint: .top, endPoint: .bottom), width: sf.w * 0.4, sfSymbol: "heart.fill") {
                                     
-                                }, image: "heart.fill")
+                                }
                             }
                             Spacer()
                             VStack{
-                                Text("5789 people want this")
-                                ButtonView(text: "Add to Wishlist", fontSize: sf.w * 0.04, hTextPadding: 0, color: LinearGradient(colors: [Color("babyBlue"), Color("babyBlue")], startPoint: .top, endPoint: .bottom), width: sf.w * 0.4, action: {
+                                Text("\(model.games.gameById?["lists"].stringValue.htmlToString ?? "") people want it")
+                                ButtonView(text: "Add to Wishlist", fontSize: sf.w * 0.04, color: LinearGradient(colors: [Color("babyBlue"), Color("babyBlue")], startPoint: .top, endPoint: .bottom), width: sf.w * 0.4, sfSymbol: "eyes") {
                                     
-                                }, image: "eyes.inverse")
+                                }
                             }
                         }.padding(.vertical)
                         Group{
-                            Text("Description text goes here. Description textdfgfdgfdgfdgfd goes here. Description text goes. Description text goes here. Description text goes here. escription text goes here. Description textdfgfdgfdgfdgfd goes here. Description text goesDeescription text goes here. Description textdfgfdgfdgfdgfd goes here. Description texescription text goes here. Description textdfgfdgfdgfdgfd goes here. Description text goes here.")
+                            Text(model.games.gameById?["description"].stringValue.htmlToString ?? "")
                                 .font(.custom("Avenir-Black", size: sf.w * 0.05))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal)
@@ -96,17 +107,31 @@ struct GameView: View {
                                     //TODO: Image gallery
                                 } label: {
                                     HStack{
-                                        Text("77")
+                                        Text(model.games.gameImages?["count"]?.stringValue ?? "")
                                             .font(.custom("Avenir-Black", size: sf.h * 0.02))
                                         Image(systemName: "chevron.forward")
                                     }
                                 }
                             }
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            
-//                            gameJSON["year_published"].stringValue,  gameJSON["players"].stringValue,  gameJSON["playtime"].stringValue,
-                            //gameJSON["name"].stringValue
-                            
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                HStack {
+                                    ForEach((model.games.gameImages?.sorted(by: <) ?? [:].sorted(by: <)), id: \.key) { key, img in
+                                        if let small = img["small"].stringValue {
+                                            AsyncImage(url: URL(string: small)) { image in
+                                                image.resizable().scaledToFit()
+                                                    .frame(maxWidth: sf.w * 0.3)
+                                            } placeholder: {
+                                                ProgressView()
+                                                    .scaleEffect(3)
+                                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                            }
+                                            .cornerRadius(30)
+                                        }
+                                    }
+                                }
+                            }
+                            .frame(maxHeight: sf.h * 0.2)
                         }
                     }
                 }
@@ -114,10 +139,13 @@ struct GameView: View {
                 .padding(.horizontal)
             }
         }
+        .navigationBarHidden(true)
         .foregroundColor(.white)
         .onAppear {
-            model.getGameById(boardgameId: gameId)
-            gameJSON = model.games.gameById ?? JSON.null
+            Task{
+                model.getGameById(boardgameId: gameId)
+                model.getGameImagesById(boardgameId: gameId)
+            }
         }
     }
 }
@@ -125,6 +153,6 @@ struct GameView: View {
 struct GameView_Previews: PreviewProvider {
     @State static var gameId = "TAAifFP590"
     static var previews: some View {
-        GameView(gameId: $gameId)
+        GameView(gameId: gameId)
     }
 }

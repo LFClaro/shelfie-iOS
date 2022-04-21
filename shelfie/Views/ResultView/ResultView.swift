@@ -26,12 +26,13 @@ struct ResultView: View {
                         .animation(.spring().delay(0.2), value: didScreenLoad)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.white)
-                }
+                }.padding(.bottom)
+                Spacer()
                 Text("Games detected in your SHELFIE!")
                     .font(.custom("Avenir-Black", size: sf.w * 0.1))
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.white)
-                ButtonView(sf: sf, text: "Add All to Collection", fontSize: sf.w * 0.05, hTextPadding: sf.w * 0, color: LinearGradient(gradient: Gradient(colors: [Color("AccentColorBottom"), Color("AccentColorTop")]), startPoint: .top, endPoint: .bottom), height: sf.h * 0.08 , width: sf.w * 0.8) {
+                ButtonView(sf: sf, text: "Add All to Collection", fontSize: sf.w * 0.05, color: LinearGradient(gradient: Gradient(colors: [Color("AccentColorBottom"), Color("AccentColorTop")]), startPoint: .top, endPoint: .bottom), height: sf.h * 0.08 , width: sf.w * 0.8, sfSymbol: "plus.circle.fill") {
                     
                 }
                 HStack{
@@ -53,10 +54,8 @@ struct ResultView: View {
                         }
                     }
                 }
-            }
+            }.padding()
         }.onAppear {
-           
-           
             didScreenLoad.toggle()
         }
     }

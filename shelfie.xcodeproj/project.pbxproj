@@ -39,6 +39,9 @@
 		25CA2DCB28017200008E789F /* ProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA2DCA28017200008E789F /* ProductView.swift */; };
 		25CA2DCD2801720B008E789F /* CardsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA2DCC2801720B008E789F /* CardsListView.swift */; };
 		25CA2DCF280176A3008E789F /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA2DCE280176A3008E789F /* Tabs.swift */; };
+		25D471772811F5B500C09B80 /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D471762811F5B500C09B80 /* Validators.swift */; };
+		25D47179281217C600C09B80 /* BuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D47178281217C600C09B80 /* BuyView.swift */; };
+		25D4717B281217D400C09B80 /* BuyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25D4717A281217D400C09B80 /* BuyViewModel.swift */; };
 		463E0B142801AE1800582423 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 463E0B132801AE1800582423 /* SettingView.swift */; };
 		46540ABF2810176800482DD8 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46540ABE2810176700482DD8 /* ResultViewModel.swift */; };
 		46540AC1281017EB00482DD8 /* PlusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46540AC0281017EB00482DD8 /* PlusMenu.swift */; };
@@ -86,6 +89,9 @@
 		25CA2DCA28017200008E789F /* ProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductView.swift; sourceTree = "<group>"; };
 		25CA2DCC2801720B008E789F /* CardsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsListView.swift; sourceTree = "<group>"; };
 		25CA2DCE280176A3008E789F /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
+		25D471762811F5B500C09B80 /* Validators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validators.swift; sourceTree = "<group>"; };
+		25D47178281217C600C09B80 /* BuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyView.swift; sourceTree = "<group>"; };
+		25D4717A281217D400C09B80 /* BuyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyViewModel.swift; sourceTree = "<group>"; };
 		463E0B122801ADA300582423 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		463E0B132801AE1800582423 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		46540ABE2810176700482DD8 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -144,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				463E0B122801ADA300582423 /* Info.plist */,
+				25D471752811F5A500C09B80 /* Helpers */,
 				255A6D27280FFCAE0054C193 /* Managers */,
 				469FC05927EE5377003E1D01 /* Service */,
 				2554D96527EE519100AE50C7 /* Models */,
@@ -180,6 +187,7 @@
 				46860E782802E22F006A8D16 /* CardsListView */,
 				258CAEF228115C3600D53378 /* GameView */,
 				46540ABD2810174C00482DD8 /* ResultView */,
+				25D4717C281217E000C09B80 /* BuyView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -226,6 +234,23 @@
 				258CAEF528115C5000D53378 /* GameViewModel.swift */,
 			);
 			path = GameView;
+			sourceTree = "<group>";
+		};
+		25D471752811F5A500C09B80 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				25D471762811F5B500C09B80 /* Validators.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		25D4717C281217E000C09B80 /* BuyView */ = {
+			isa = PBXGroup;
+			children = (
+				25D47178281217C600C09B80 /* BuyView.swift */,
+				25D4717A281217D400C09B80 /* BuyViewModel.swift */,
+			);
+			path = BuyView;
 			sourceTree = "<group>";
 		};
 		46540ABD2810174C00482DD8 /* ResultView */ = {
@@ -373,6 +398,7 @@
 				2516996627EED60F00294C08 /* MainView.swift in Sources */,
 				46540ABF2810176800482DD8 /* ResultViewModel.swift in Sources */,
 				469FC06A27EE97FA003E1D01 /* PlaceHolderStyle.swift in Sources */,
+				25D47179281217C600C09B80 /* BuyView.swift in Sources */,
 				255A6D2D28100A020054C193 /* ResultView.swift in Sources */,
 				469FC06127EE70EF003E1D01 /* CustomTextField.swift in Sources */,
 				2516996227EEB65200294C08 /* CustomTabBar.swift in Sources */,
@@ -381,6 +407,8 @@
 				25CA2DCD2801720B008E789F /* CardsListView.swift in Sources */,
 				2554D95727EE49A100AE50C7 /* shelfie.xcdatamodeld in Sources */,
 				25CA2DC92800D79C008E789F /* ProfilePicture.swift in Sources */,
+				25D4717B281217D400C09B80 /* BuyViewModel.swift in Sources */,
+				25D471772811F5B500C09B80 /* Validators.swift in Sources */,
 				255A6D29281003340054C193 /* TextReader.swift in Sources */,
 				46540AC32810180A00482DD8 /* TabBarIcon.swift in Sources */,
 				255A6D26280FFA590054C193 /* ScannerManager.swift in Sources */,
@@ -533,10 +561,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"shelfie/Preview Content\"";
-				DEVELOPMENT_TEAM = JJ2P43A6R8;
+				DEVELOPMENT_TEAM = VDQS4882Z8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = shelfie/Info.plist;
@@ -550,8 +579,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.ap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.app;
 				PRODUCT_NAME = Shelfie;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -566,7 +596,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"shelfie/Preview Content\"";
-				DEVELOPMENT_TEAM = JJ2P43A6R8;
+				DEVELOPMENT_TEAM = VDQS4882Z8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = shelfie/Info.plist;
@@ -580,7 +610,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.ap;
+				PRODUCT_BUNDLE_IDENTIFIER = com.shelfie.app;
 				PRODUCT_NAME = Shelfie;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

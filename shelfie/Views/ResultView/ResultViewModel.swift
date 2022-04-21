@@ -15,7 +15,7 @@ class ResultViewModel: ObservableObject {
     
     func getSearchedGames(games : [String: JSON]){
         for item in items {
-            filters = filterItems(item: item.text, games: games)
+            filters = filterItems(item: "catan", games: games)
             print(filters)
         }
     }

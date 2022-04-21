@@ -14,8 +14,27 @@ class GameViewModel: ObservableObject {
     static var shared = GameViewModel()
     
     func getGameById(boardgameId: String){
-        ApiService.shared.getBoardgamesById(id: boardgameId) { gameJSON in
-            self.games.gameById = gameJSON
+        ApiService.shared.getBoardgamesById(id: boardgameId) { [self] gameJSON in
+            print(gameJSON["games"][0])
+            games.gameById = gameJSON["games"][0]
+        }
+    }
+    
+    func getGameImagesById(boardgameId: String){
+        games.gameImages = [:]
+        ApiService.shared.getGameImagesById(id: boardgameId) { [self] gameImages in
+            gameImages["images"].forEach{(s , j) in
+                games.gameImages?[s] = j
+            }
+        }
+    }
+    
+    func getGameVideosById(boardgameId: String){
+        games.gameVideos = [:]
+        ApiService.shared.getGameVideosById(id: boardgameId) { [self] gameVideos in
+            gameVideos["videos"].forEach{(s , j) in
+                games.gameVideos?[s] = j
+            }
         }
     }
 }
