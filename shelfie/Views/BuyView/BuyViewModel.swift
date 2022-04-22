@@ -14,7 +14,7 @@ class BuyViewModel: ObservableObject {
     static var shared = BuyViewModel()
 
     func getGamePricesById(boardgameId: String){
-        games.gameVideos = [:]
+        games.gamePrices = [:]
         ApiService.shared.getGamePricesById(id: boardgameId) { [self] gamePrices in
             gamePrices["gameWithPrices"]["canada"].forEach{(s , j) in // Just for Canada at first
                 games.gamePrices?[s] = j

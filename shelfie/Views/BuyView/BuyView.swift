@@ -12,8 +12,7 @@ struct BuyView: View {
     @State var gameId : String
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @StateObject var model = BuyViewModel.shared
-    @State var gameJSON : JSON?
-    @State var gamePricesJSON : [String: JSON]?
+    @StateObject var gameModel = GameViewModel.shared
     
     var body: some View {
         ZStack {
@@ -28,7 +27,7 @@ struct BuyView: View {
                         .frame(maxHeight: sf.h * 0.3)
                         .clipped()
                         .opacity(0.4)
-                    if let imageUrl = model.games.gameById?["images"]["original"].stringValue {
+                    if let imageUrl = gameModel.games.gameById?["images"]["original"].stringValue {
                         AsyncImage(url: URL(string: imageUrl)) { image in
                             image.resizable().scaledToFit()
                                 .frame(maxHeight: sf.h * 0.3)
@@ -43,11 +42,13 @@ struct BuyView: View {
                         .frame(maxHeight: .infinity, alignment: .bottom)
                     HStack {
                         VStack(alignment: .leading) {
-                            Text("Buy \(model.games.gameById?["name"].stringValue ?? "")")
+                            Text("Buy \(gameModel.games.gameById?["name"].stringValue ?? "")")
                                 .font(.custom("Avenir-Black", size: sf.w * 0.07))
                         }
-                    }.padding()
-                        .frame(maxHeight: .infinity, alignment: .bottomLeading)
+                        Spacer()
+                    }
+                    .padding()
+                    .frame(maxHeight: .infinity, alignment: .bottomLeading)
                     Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
                         Image(systemName: "chevron.backward")
                             .font(.largeTitle.bold())
@@ -61,13 +62,20 @@ struct BuyView: View {
                     VStack{
                         Spacer()
                         ForEach((model.games.gamePrices?.sorted(by: <) ?? [:].sorted(by: <)), id: \.key) { key, value in
+                            let priceDouble = value["price"].doubleValue
+                            let twoDecimalsPrice = round(priceDouble * 100) / 100.0
+                            
                             HStack{
-                                VStack{
-                                    Text("Place").font(.largeTitle)
-                                    Text("Name").font(.caption)
-                                }
+                                VStack(alignment: .leading){
+                                    Text("\(value["store_name"].stringValue)").font(.title2)
+                                    Text("\(value["name"].stringValue)").font(.caption)
+                                }.padding(.horizontal)
                                 Spacer()
-                                ButtonView(text: "Price", color: LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .top, endPoint: .bottom), width: sf.w * 0.3, sfSymbol: "dollarsign.circle.fill")
+                                ButtonView(text: "$\(twoDecimalsPrice)", fontSize: sf.w * 0.04, color: LinearGradient(colors: [Color("AccentColorTop"), Color("AccentColorBottom")], startPoint: .top, endPoint: .bottom), width: sf.w * 0.32, sfSymbol: "dollarsign.circle.fill") {
+                                    if let storeURL = URL(string: value["url"].stringValue) {
+                                        UIApplication.shared.open(storeURL, options: [:], completionHandler: nil)
+                                    }
+                                }
                                 
                             }
                             .frame(height: 0.06 * sf.h)

@@ -15,7 +15,6 @@ class GameViewModel: ObservableObject {
     
     func getGameById(boardgameId: String){
         ApiService.shared.getBoardgamesById(id: boardgameId) { [self] gameJSON in
-            print(gameJSON["games"][0])
             games.gameById = gameJSON["games"][0]
         }
     }
