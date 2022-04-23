@@ -37,11 +37,12 @@ struct CustomTextField: View {
                 }
             }
         })
+        .foregroundColor(textColor)
+        .disableAutocorrection(true)
          .modifier(PlaceHolderStyle(hidePlaceHolder: $hidePlaceHolder, placeholder: placeHolder, rightViewImage: rightViewImage ?? "", rightViewSize: rightViewSize ?? 0))
          .padding(padding ?? 0)
          .background(bgColor ?? Color("TxtFieldBlue"))
          .cornerRadius(roundedCorners ?? 0)
-         .foregroundColor(textColor)
          .font(.custom("Open Sans", size: fontSize ?? 20))
          .shadow(radius: shadowRadius ?? 10)
          .onChange(of: changedValue?.wrappedValue ?? "", perform: performChanged)

@@ -6,16 +6,28 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var showingAlert = false
+    @State private var alertmessage = ""
+    @State private var isLoggedIn = false
     
     @FocusState private var focusedField: Field?
     
     enum Field: Hashable {
         case emailField
         case passwordField
+    }
+    
+    init() {
+        Auth.auth().addStateDidChangeListener { auth, user in
+            if user != nil {
+                //MARK: - Once the user is signed up, we can see a list of already signed up users
+            }
+        }
     }
     
     var body: some View {
@@ -54,7 +66,7 @@ struct LoginView: View {
                         }
                     
                     Text("Password").font(.custom("Avenir", size: sf.h * 0.03))
-                    TextField("", text: $password)
+                    SecureField("", text: $password)
                         .textContentType(.emailAddress)
                         .focused($focusedField, equals: .passwordField)
                         .submitLabel(.done)
@@ -74,22 +86,60 @@ struct LoginView: View {
                 }.padding().frame(width: sf.w * 0.75)
                 
                 
-                NavigationLink {
-                    MainView()
-                } label: {
-                    HStack{
-                        Text("LOGIN")
-                            .font(Font.custom("Avenir-Black", size: 0.06 * sf.w))
+//                NavigationLink {
+//                    MainView()
+//                } label: {
+//                    HStack{
+//                        Text("LOGIN")
+//                            .font(Font.custom("Avenir-Black", size: 0.06 * sf.w))
+//                    }
+//                    .foregroundColor(Color.white)
+//                    .frame(width: sf.w * 0.6, height: sf.h * 0.06)
+//                    .background(LinearGradient(gradient: Gradient(colors: [Color("BtnBlue"), Color("BtnPurple")]), startPoint: .top, endPoint: .bottom))
+//                    .cornerRadius(30)
+//                    .shadow(color: Color.black.opacity(0.5), radius: 2, x: 1, y: 1)
+//                }
+                
+                ButtonView(text: "LOGIN"){
+                    print("Inside login Function!!!!--------")
+                    Auth.auth().addStateDidChangeListener { auth, user in
+                        if user != nil {
+                            print("---------User Exists-------")
+                            guard //These have to be true
+                                email.count > 0,
+                                password.count > 0
+                            else {
+                                showingAlert = true
+                                alertmessage = "Fill in the Credentials"
+                                return
+                            }
+                            
+                            Auth.auth().signIn(withEmail: email, password: password) { user, error in
+                                if let _ = error, user == nil {
+                                    print("Signin Failed");
+                                    showingAlert = true
+                                    alertmessage = "Invalid Credentials"
+                                    return
+                                } else {
+                                    isLoggedIn = true
+                                    print("Signin Success");
+                                }
+                            }
+                        }
+                        else{
+                            showingAlert = true
+                            alertmessage = "Please sign-up to continue"
+                            return
+                        }
                     }
-                    .foregroundColor(Color.white)
-                    .frame(width: sf.w * 0.6, height: sf.h * 0.06)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color("BtnBlue"), Color("BtnPurple")]), startPoint: .top, endPoint: .bottom))
-                    .cornerRadius(30)
-                    .shadow(color: Color.black.opacity(0.5), radius: 2, x: 1, y: 1)
+                }
+                .padding()
+                .alert(alertmessage, isPresented: $showingAlert) {
+                        Button("OK", role: .cancel) { }
                 }
                 
                 Spacer()
-                
+
                 HStack{
                     Text("Not registered yet?").font(.custom("Avenir", size: sf.h * 0.025))
                     NavigationLink {
@@ -99,8 +149,6 @@ struct LoginView: View {
                     }
                 }
                 
-                
-                
                 Spacer()
                 
             }
@@ -109,6 +157,9 @@ struct LoginView: View {
         }
         .foregroundColor(.white)
         .navigationBarHidden(true)
+        .fullScreenCover(isPresented: $isLoggedIn){
+            MainView()
+        }
     }
 }
 

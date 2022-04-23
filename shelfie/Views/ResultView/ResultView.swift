@@ -26,13 +26,12 @@ struct ResultView: View {
                         .animation(.spring().delay(0.2), value: didScreenLoad)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(.white)
-                }.padding(.bottom)
-                Spacer()
+                }
                 Text("Games detected in your SHELFIE!")
                     .font(.custom("Avenir-Black", size: sf.w * 0.1))
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.white)
-                ButtonView(sf: sf, text: "Add All to Collection", fontSize: sf.w * 0.05, color: LinearGradient(gradient: Gradient(colors: [Color("AccentColorBottom"), Color("AccentColorTop")]), startPoint: .top, endPoint: .bottom), height: sf.h * 0.08 , width: sf.w * 0.8, sfSymbol: "plus.circle.fill") {
+                ButtonView(sf: sf, text: "Add All to Collection", fontSize: sf.w * 0.05, color: LinearGradient(gradient: Gradient(colors: [Color("AccentColorBottom"), Color("AccentColorTop")]), startPoint: .top, endPoint: .bottom), height: sf.h * 0.08 , width: sf.w * 0.8) {
                     
                 }
                 HStack{
@@ -46,16 +45,19 @@ struct ResultView: View {
                         .foregroundColor(.white)
                 }
                 ScrollView(.vertical){
-                    ForEach((model.filters.sorted(by: <) ), id: \.key) { key, value in
-                        CustomRows(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, infoPlayers: value["players"].stringValue, infoTime: value["playtime"].stringValue, showHeart: true, showEyes: true, showForSale: true)
+                    ForEach(model.items, id: \.id) { item in
+//                        CustomRows(roundedCorners: 60, gameName: value["name"].stringValue, imageUrl: value["images"]["original"].stringValue, infoPlayers: value["players"].stringValue, infoTime: value["playtime"].stringValue, showHeart: true, showEyes: true, showForSale: true)
+                        Text(item.text)
                     }.onAppear{
                         if !model.items.isEmpty{
                             model.getSearchedGames(games: home.games.topGames ?? [:])
                         }
                     }
                 }
-            }.padding()
+            }
         }.onAppear {
+           
+           
             didScreenLoad.toggle()
         }
     }

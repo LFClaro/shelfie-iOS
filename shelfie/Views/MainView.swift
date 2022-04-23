@@ -9,9 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        ZStack{
-            CustomTabBar(viewRouter: ViewRouter())
-                .foregroundColor(.white)
+        NavigationView{
+            ZStack{
+                CustomTabBar(viewRouter: ViewRouter())
+                    .foregroundColor(.white)
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ struct CustomTabBar: View {
     var imgRef : StorageReference {
         return Storage.storage().reference().child("Images")
     }
-    let filename = "Images/profilepic.png"
+    let filename = "Images/"
     
     var body: some View {
         GeometryReader { geometry in
@@ -193,7 +193,7 @@ struct CustomTabBar: View {
             }
             
             //MARK: - Save image under our firebase ref location
-            let uploadRef = imgRef.child(filename)
+            let uploadRef = imgRef.child(filename + ((Auth.auth().currentUser?.email ?? "")?.htmlToString ?? "") + "_profilepic.png")
             
             let uploadTask = uploadRef.putData(imageData, metadata: nil) { (metadata, error) in
                 //MARK: - Once upload is complete, print information on upload, and update status label
