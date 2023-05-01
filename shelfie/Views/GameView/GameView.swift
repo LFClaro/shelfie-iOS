@@ -117,7 +117,8 @@ struct GameView: View {
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack {
                                     ForEach((model.games.gameImages?.sorted(by: <) ?? [:].sorted(by: <)), id: \.key) { key, img in
-                                        if let small = img["small"].stringValue {
+                                        var smallImgUrl: String? = img["small"].stringValue
+                                        if let small = smallImgUrl {
                                             AsyncImage(url: URL(string: small)) { image in
                                                 image.resizable().scaledToFit()
                                                     .frame(maxWidth: sf.w * 0.3)
