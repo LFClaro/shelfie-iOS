@@ -5,19 +5,10 @@ Integrated with the [Board Game Atlas API](https://www.boardgameatlas.com/api/do
 
 Creator: [Luiz Claro](https://github.com/LFClaro)
 
-<p float ="left">
-<img src="https://drive.google.com/uc?id=1MwZAf4L9lbYIU7UInFELXiOnqV94NmXL"  
-alt="Shelfie Launch Screen"
-width="33%" />
+| Splash Screen            |  Main Screen              | Board Game Details Screen |
+:-------------------------:|:-------------------------:|:-------------------------:
+<img src="https://drive.google.com/uc?id=1MwZAf4L9lbYIU7UInFELXiOnqV94NmXL" alt="Shelfie Launch Screen" /> |  <img src="https://drive.google.com/uc?id=1srbU5iV82XztNr_JIWlt3JcYSv_eOjj3" alt="Shelfie Main Screen" />  | <img src="https://drive.google.com/uc?id=1fPGq2AKIjWlkBLTA5RUnoHta5l2lFNMy" alt="Shelfie Product Screen" />
 
-<img src="https://drive.google.com/uc?id=1srbU5iV82XztNr_JIWlt3JcYSv_eOjj3"  
-alt="Shelfie Main Screen"
-width="33%" />
-
-<img src="https://drive.google.com/uc?id=1fPGq2AKIjWlkBLTA5RUnoHta5l2lFNMy"  
-alt="Shelfie Product Screen"
-width="33%" />
-</p>
 
 Team:
 - Luiz Claro
